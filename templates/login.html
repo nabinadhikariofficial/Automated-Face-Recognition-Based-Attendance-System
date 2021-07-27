@@ -1,62 +1,56 @@
-<html>
-    <head>
-        <title>
-            Login and Signup
-        </title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <script>
-        function myFunction() {
-          var x = document.getElementById("password");
-          if (x.type === "password") {
-            x.type = "text";
-          } else {
-            x.type = "password";
-          }
-        }
-      </script>
-    <body>
-        <div class = "whole" >
-            <div class = "form">
-                <div class="button-box">
-                    <div id= "btn"></div>
-                    <button type="button" class = "toggle"> Login</button>
-                    <button type="button" class = "toggle"> Signup</button>
-                </div>
-                <div class="center">
-                    <form method="POST" >
-                        <div class="text">
-                            <div class = "photo">
-                                <img class = "photo" src="E:\Html\username.png" >
-                            </div>
-                          <input type="text" name="username"  required>
-                          <span class="underline"></span>
-                          <label class="ep"  >Username</label>
-                        </div>
-                        <div class="text">
-                            <div class = "photo">
-                                <img class = "photo" src="E:\Html\password.png" >
-                            </div>
-                          <input type="password" name="password" id="password" required>
-                          <span class="underline"></span>
-                          <label class="ep" >Password</label>
-                        </div>
-                        <div class="sh">
-                          <label>
-                            <input type="checkbox" name="checkbox" value="no" onclick="myFunction()">
-                            <span class="show">Show Password</span>
-                          </label>
-                        </div>
-                        <div class="center-log">
-                            <input type="submit" name="submit" value="Login" class="login">
-                        </div>
-                        <div class="signup">
-                          Don't have an account? <a href="{{url_for('signup')}}">SignUp</a>
-                        </div>
-                      </form>
-                   </div>
-               
-            </div>
+{% extends "layout.html" %}
+{% block title %}Homepage{% endblock %}
+{% block content %}
+<script>
+  function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+</script>
+
+<div class="whole">
+  <div class="form">
+    <div class="button-box">
+      <div id="btn"></div>
+      <button type="button" class="toggle"> Login</button>
+      <button type="button" class="toggle"> Signup</button>
+    </div>
+    <div class="center">
+      <form method="POST">
+        <div class="text">
+          <div class="photo">
+            <img class="photo" src="\static\img\username.png">
+          </div>
+          <input type="text" name="username" required>
+          <span class="underline"></span>
+          <label class="ep">Username</label>
         </div>
-    </body>
-</html>
+        <div class="text">
+          <div class="photo">
+            <img class="photo" src="\static\img\password.png">
+          </div>
+          <input type="password" name="password" id="password" required>
+          <span class="underline"></span>
+          <label class="ep">Password</label>
+        </div>
+        <div class="sh">
+          <label>
+            <input type="checkbox" name="checkbox" value="no" onclick="myFunction()">
+            <span class="show">Show Password</span>
+          </label>
+        </div>
+        <div class="center-log">
+          <input type="submit" name="submit" value="Login" class="login">
+        </div>
+        <div class="signup">
+          Don't have an account? SignUp
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

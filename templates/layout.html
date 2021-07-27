@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static',filename="css/style.css")}}">
+    <link rel="stylesheet" href="{{url_for('static',filename="css/nav.css")}}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div>
+            </div>
+            <nav>
+                <ul>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>
