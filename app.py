@@ -6,12 +6,11 @@ app = Flask(__name__)
 faces = RetinaFace.detect_faces("download.jpg")
 for face in faces:
     print(face)
-    print('\n')
 
 
 @app.route('/')
 def index():
-    render_template('index.html')
+    render_template('login.html')
 
 
 if __name__ == "__main__":
