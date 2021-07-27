@@ -4,9 +4,10 @@ from flask import Flask, request, render_template, jsonify, Markup, session, red
 
 app = Flask(__name__)
 app.secret_key = 'key'
-""" faces = RetinaFace.detect_faces("download.jpg")
-for face in faces:
-    print(face) """
+faces = RetinaFace.detect_faces(img_path="download.jpg")
+
+for face in faces.items():
+    print(face[1]["facial_area"])
 
 host_add = '127.0.0.1'
 port_add = 5000
@@ -18,5 +19,5 @@ def index():
 
 
 # Running the app
-if __name__ == "__main__":
-    app.run(host=host_add, port=port_add, debug=True)
+""" if __name__ == "__main__":
+    app.run(host=host_add, port=port_add, debug=True) """
