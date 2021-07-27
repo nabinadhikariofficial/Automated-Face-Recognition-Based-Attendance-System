@@ -1,5 +1,5 @@
 from retinaface import RetinaFace
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from flask import Flask, request, render_template, jsonify, Markup, session, redirect, url_for
 
 app = Flask(__name__)

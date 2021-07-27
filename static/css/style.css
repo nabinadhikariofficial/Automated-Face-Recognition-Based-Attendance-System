@@ -6,7 +6,7 @@
 .whole {
   height: 100%;
   width: 100%;
-  background-color: blue;
+  background-color: whitesmoke;
   background-position: center;
   background-size: cover;
   position: absolute;
@@ -150,4 +150,8 @@ label > input[type="checkbox"]:checked + * {
   height: 20px;
   margin-top: 4.9%;
   margin-left: -5%;
+}
+
+.signup {
+  text-align: center;
 }
