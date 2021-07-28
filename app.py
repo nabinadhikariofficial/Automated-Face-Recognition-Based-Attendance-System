@@ -4,6 +4,7 @@ from flask import Flask, request, render_template, jsonify, Markup, session, red
 import os
 from werkzeug.utils import secure_filename
 import cv2
+import time
 
 UPLOAD_FOLDER = './uploads/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -46,7 +47,7 @@ def getimage():
             message = "Please Select a Image first"
         else:
             message = "Image accepted"
-            filename = secure_filename(file.filename)
+            filename = secure_filename("image_"+str(int(time.time()))+".jpg")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filename_full = UPLOAD_FOLDER + filename
             info = face_detection(filename_full)
