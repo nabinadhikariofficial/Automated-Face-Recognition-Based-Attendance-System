@@ -52,7 +52,8 @@ def getimage():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filename_full = UPLOAD_FOLDER + filename
             info = face_detection(filename_full)
-        context = {'message': message, 'image_info': info}
+        context = {'message': message, 'image_info': info,
+                   'img_time': str(int(time.time()))}
         return render_template('getimage.html', context=context, len=len(info))
     else:
         return render_template('getimage.html', context={}, len=0)

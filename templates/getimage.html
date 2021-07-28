@@ -7,7 +7,7 @@
   <input type="submit" value="Upload" class="btn btn-primary">
   <h4>{{context.message}}</h4>
   {% for i in range(0, len) %}
-  <img src='/static/img/faces/face_{{i+1}}.jpg'>
+  <img src='/static/img/faces/face_{{i+1}}.jpg?{{context.img_time}}'>
   {% endfor %}
   <h4>{{context.image_info}}</h4>
 </form>
