@@ -16,7 +16,7 @@ app.secret_key = 'key'
 
 def face_detection(image_loc):
     faces = RetinaFace.detect_faces(img_path=image_loc)
-    image = cv2.imread('download.jpg')
+    image = cv2.imread(image_loc)
     for face in faces.items():
         data = face[1]["facial_area"]
         # formula = (y1:y2+1 ,x1:x2+1)
