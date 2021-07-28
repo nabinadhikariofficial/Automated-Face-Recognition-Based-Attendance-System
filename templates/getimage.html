@@ -2,17 +2,10 @@
 {% block title %}Homepage{% endblock %}
 {% block content %}
 <h1>Get image Page</h1>
-
 <form method="POST" enctype="multipart/form-data">
-   
-  <button type="button" class="btn btn-outline-primary"><input type="file" name="file" ></button>
-
-    <input type="submit" value="Upload" class="btn btn-primary">
-
-    <h4>{{context.message}}</h4>
-
-
- 
-  </form>
-
+  <button type="button" class="btn btn-outline-primary"><input type="file" name="file"></button>
+  <input type="submit" value="Upload" class="btn btn-primary">
+  <h4>{{context.message}}</h4>
+  <h4>{{context.image_info}}</h4>
+</form>
 {% endblock content%}
