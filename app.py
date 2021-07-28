@@ -21,8 +21,9 @@ def face_detection(image_loc):
         data = face[1]["facial_area"]
         # formula = (y1:y2+1 ,x1:x2+1)
         crop = image[data[1]:data[3]+1, data[0]:data[2]+1]
-        cv2.imshow('Image', crop)
-        cv2.waitKey(0)
+        location = './static/img/faces/' + \
+            str(face[0])+'.jpg'
+        cv2.imwrite(location, crop)
     return faces
 
 
@@ -51,10 +52,11 @@ def getimage():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filename_full = UPLOAD_FOLDER + filename
             info = face_detection(filename_full)
-        context = {'message': message, 'image_info': info}
-        return render_template('getimage.html', context=context)
+        context = {'message': message, 'image_info': info,
+                   'img_time': str(int(time.time()))}
+        return render_template('getimage.html', context=context, len=len(info))
     else:
-        return render_template('getimage.html', context={})
+        return render_template('getimage.html', context={}, len=0)
 
 
 # Running the app
