@@ -1,14 +1,53 @@
 {% extends "layout.html" %}
-{% block title %}Homepage{% endblock %}
+{% block title %}Image Detection{% endblock %}
 {% block content %}
-<h1>Get image Page</h1>
+<div class="container">
+<h3>Get image Page</h3>
 <form method="POST" enctype="multipart/form-data">
   <button type="button" class="btn btn-outline-primary"><input type="file" name="file"></button>
   <input type="submit" value="Upload" class="btn btn-primary">
   <h4>{{context.message}}</h4>
-  {% for i in range(0, len) %}
-  <img src='/static/img/faces/face_{{i+1}}.jpg?{{context.img_time}}'>
-  {% endfor %}
-  <h4>{{context.image_info}}</h4>
 </form>
+
+
+ 
+    <div class="row">
+      
+    {% for i in range(0, len) %}
+    <div class="col">
+ 
+    <div class="card" style="width: 24rem;" >
+    <div class="card-header">
+    <h3>face_{{i+1}}</h3>
+    </div>
+
+  <img src='/static/img/faces/face_{{i+1}}.jpg?{{context.img_time}}' >
+  </div>
+</div>
+  {% endfor %}
+
+</div>
+
+
+
+  
+  <div class="row">
+  {% for keys in context.image_info %}
+  <div class="col">
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      {{keys}}
+      </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">score:{{context.image_info[keys]['score']}}</li>
+      <li class="list-group-item">facial area:{{context.image_info[keys]['facial_area']}}</li>
+      
+    </ul>
+  </div>
+  </div>
+  {%endfor%}
+  </div>
+
+
+
 {% endblock content%}
