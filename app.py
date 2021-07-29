@@ -38,8 +38,8 @@ def index():
 # webpage where user can provide image
 
 
-@app.route('/getimage', methods=['GET', 'POST'])
-def getimage():
+@app.route('/detectfaces', methods=['GET', 'POST'])
+def detectfaces():
     if request.method == 'POST':
         file = request.files['file']
         if 'file' not in request.files:
@@ -54,9 +54,9 @@ def getimage():
             info = face_detection(filename_full)
         context = {'message': message, 'image_info': info,
                    'img_time': str(int(time.time()))}
-        return render_template('getimage.html', context=context, len=len(info))
+        return render_template('detectfaces.html', context=context, len=len(info))
     else:
-        return render_template('getimage.html', context={}, len=0)
+        return render_template('detectfaces.html', context={}, len=0)
 
 
 # Running the app
