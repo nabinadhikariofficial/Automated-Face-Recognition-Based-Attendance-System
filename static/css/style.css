@@ -17,12 +17,12 @@
   width: 30%;
   background: #ffff;
   position: relative;
-  margin: 6% auto;
+  margin: 2% auto;
   padding: 5px;
 }
 
 .button-box {
-  width: 220px;
+  width: 110px;
   margin: 35px auto;
   position: relative;
   box-shadow: 0 0 20px 9px #be67441f;
@@ -154,4 +154,75 @@ label > input[type="checkbox"]:checked + * {
 
 .signup {
   text-align: center;
+}
+
+.upload{
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  margin-top: 2%;
+}
+.font{
+  font-weight: bold;
+  font-family: Garamond, serif;
+  font-size: 30px;
+}
+.fontt{
+  font-weight: bold;
+  font-family: Garamond, serif;
+  font-size: 30px;
+  color: green;
+}
+
+.navbtn {
+  cursor: pointer;
+  display: list-item;
+  background: black;
+  color:white;
+  height: fit-content;
+  border-radius: 20px;
+  margin-top: 0%;
+  align-items: center;
+  height: 5%;
+  width: 10%;
+  padding: 10px;
+
+}
+.navbtn:hover{
+  background-color: green;
+}
+
+.list{
+  list-style-type:none;
+  display:flex;
+  justify-content: center;
+}
+
+.head{
+  color: black;
+}
+.headd{
+  height: 10%;
+}
+.system{
+  border: 3px solid green;
+  margin: auto;
+}
+
+.image{
+  border: 3px solid red;
+  width: 100px;
+  height: 100px;
+  margin-top: 4%;
+  margin-left: 20%;
+  display: inline-block;
+}
+.details{
+  margin-top: -9%;
+  border: 3px solid green;
+  width: 100px;
+  height: 100px;
+  margin-left: 60%;
+  display: inline-block;
+  
 }

@@ -54,11 +54,13 @@ def detectfaces():
             info = face_detection(filename_full)
         context = {'message': message, 'image_info': info,
                    'img_time': str(int(time.time()))}
-        return render_template('detectfaces.html', context=context, len=len(info))
+        print(context)
+        return render_template('detectfaces.html', context=context, len=len(info) , zip=zip)
     else:
-        return render_template('detectfaces.html', context={}, len=0)
+        return render_template('detectfaces.html', context={}, len=0 , zip = zip)
 
 
 # Running the app
 if __name__ == "__main__":
     app.run(host=host_add, port=port_add, debug=True)
+    app.jinja_env.filters['zip'] = zip
