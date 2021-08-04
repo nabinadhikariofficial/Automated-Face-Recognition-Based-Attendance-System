@@ -156,18 +156,18 @@ label > input[type="checkbox"]:checked + * {
   text-align: center;
 }
 
-.upload{
+.upload {
   width: fit-content;
   height: fit-content;
   margin: auto;
   margin-top: 2%;
 }
-.font{
+.font {
   font-weight: bold;
   font-family: Garamond, serif;
   font-size: 30px;
 }
-.fontt{
+.fontt {
   font-weight: bold;
   font-family: Garamond, serif;
   font-size: 30px;
@@ -178,7 +178,7 @@ label > input[type="checkbox"]:checked + * {
   cursor: pointer;
   display: list-item;
   background: black;
-  color:white;
+  color: white;
   height: fit-content;
   border-radius: 20px;
   margin-top: 0%;
@@ -186,30 +186,29 @@ label > input[type="checkbox"]:checked + * {
   height: 5%;
   width: 10%;
   padding: 10px;
-
 }
-.navbtn:hover{
+.navbtn:hover {
   background-color: green;
 }
 
-.list{
-  list-style-type:none;
-  display:flex;
+.list {
+  list-style-type: none;
+  display: flex;
   justify-content: center;
 }
 
-.head{
+.head {
   color: black;
 }
-.headd{
+.headd {
   height: 10%;
 }
-.system{
+.system {
   border: 3px solid green;
   margin: auto;
 }
 
-.image{
+.image {
   border: 3px solid red;
   width: 100px;
   height: 100px;
@@ -217,12 +216,11 @@ label > input[type="checkbox"]:checked + * {
   margin-left: 20%;
   display: inline-block;
 }
-.details{
+.details {
   margin-top: -9%;
   border: 3px solid green;
   width: 100px;
   height: 100px;
   margin-left: 60%;
   display: inline-block;
-  
 }
