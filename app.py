@@ -54,7 +54,6 @@ def detectfaces():
             info = face_detection(filename_full)
         context = {'message': message, 'image_info': info,
                    'img_time': str(int(time.time()))}
-        print(context)
         return render_template('detectfaces.html', context=context, len=len(info) , zip=zip)
     else:
         return render_template('detectfaces.html', context={}, len=0 , zip = zip)

@@ -3,7 +3,7 @@
 {% block content %}
   <div class="container">
     <div class="upload">
-      <h3 class = "font">DETECT FACES</h3>
+      <h3 class = "fontt">DETECT FACES</h3>
     </div>
     <div class="upload">
       <p>Please upload photo you want to detect faces.</p>
@@ -21,7 +21,7 @@
     <div class="row">
       <div class="row">
         {% for (i , keys) in zip(range(len), context.image_info) %}
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;margin-left: 4%;">
           <img class="card-img-top" src='/static/img/faces/face_{{i+1}}.jpg?{{context.img_time}}' height = "300px" width="300px">
           <div class="card-body">
             <h5 class="card-title">{{keys}}</h5>

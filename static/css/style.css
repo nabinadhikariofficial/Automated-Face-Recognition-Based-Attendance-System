@@ -170,8 +170,7 @@ label > input[type="checkbox"]:checked + * {
 .fontt{
   font-weight: bold;
   font-family: Garamond, serif;
-  font-size: 30px;
-  color: green;
+  font-size: 40px;
 }
 
 .navbtn {
