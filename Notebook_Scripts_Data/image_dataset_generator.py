@@ -22,4 +22,3 @@ for file in files:
     count = count+1
     print(file)
 print(len(files))
-print(count)
