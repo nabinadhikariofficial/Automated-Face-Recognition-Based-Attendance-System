@@ -22,7 +22,7 @@
     <div class="row">
       {% for (i , keys) in zip(range(len), context.image_info) %}
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src='/static/img/faces/face_{{i+1}}.jpg?{{context.img_time}}' height="300px"
+        <img class="card-img-top" src='/static/img/faces/instant/face_{{i+1}}.jpg?{{context.img_time}}' height="300px"
           width="300px">
         <div class="card-body">
           <h5 class="card-title">{{keys}}</h5>

@@ -23,8 +23,12 @@ def face_detection(image_loc):
         data = face[1]["facial_area"]
         # formula = (y1:y2+1 ,x1:x2+1)
         crop = image[data[1]:data[3]+1, data[0]:data[2]+1]
-        location = basedir + '\\static\\img\\faces\\' + str(face[0]) + '.jpg'
-        cv2.imwrite(location, crop)
+        location1 = basedir + '\\static\\img\\faces\\instant\\' + \
+            str(face[0]) + '.jpg'
+        location2 = basedir + '\\static\\img\\faces\\backup\\' + \
+            str(face[0]) + '_'+str(int(time.time())) + '.jpg'
+        cv2.imwrite(location1, crop)
+        cv2.imwrite(location2, crop)
     return faces
 
 
@@ -50,11 +54,9 @@ def detectfaces():
         else:
             message = "Image accepted"
             filename = secure_filename("image_"+str(int(time.time()))+".jpg")
-            print(basedir)
             file.save(os.path.join(
                 basedir, app.config['UPLOAD_FOLDER'], filename))
             filename_full = basedir + "\\uploads\\" + filename
-            print(filename_full)
             info = face_detection(filename_full)
         context = {'message': message, 'image_info': info,
                    'img_time': str(int(time.time()))}
