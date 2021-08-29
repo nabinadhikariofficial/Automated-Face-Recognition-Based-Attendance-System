@@ -2,14 +2,20 @@
 {% block title %}Homepage{% endblock %}
 {% block content %}
 
-<div class = "button-display">
+<!-- <div class = "button-display">
   <a href="{{url_for('capture')}}">
     <img class="camera" src="\static\img\camera.png" >
   </a>
 </div>
 <div class="display-text">
   Click here to open camera
-</div>
-
+</div> -->
+<div class="container">
+  <div class="row">
+      <div class="col-lg-8  offset-lg-2">
+          <h3 class="mt-5">Camera</h3>
+          <img src="{{ url_for('capture') }}" width="100%">
+      </div>
+  </div>
 
 {% endblock %}
