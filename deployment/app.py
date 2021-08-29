@@ -64,6 +64,46 @@ def detectfaces():
     else:
         return render_template('detectfaces.html', context={}, len=0, zip=zip)
 
+@app.route('/capture', methods=['GET', 'POST'])
+def capture():
+    video_capture = cv2.VideoCapture(0)
+    
+    def gen_frames():
+        while(True):
+            if not video_capture.isOpened():
+                print('Unable to load camera.')
+                sleep(5)
+                pass    
+            
+            ret, image = video_capture.read()
+
+
+
+
+            # Display the resulting image
+            cv2.imshow('Video', image)
+
+            if cv2.waitKey(1) & 0xFF == ord('s'): 
+
+                check, image = video_capture.read()
+                cv2.imshow("Capturing", image)
+                cv2.imwrite(filename='saved_img.jpg', img=image)
+                #video_capture.release()
+                #img_new = cv2.imread('saved_img.jpg')
+                #img_new = cv2.imshow("Captured Image", img_new)
+                #cv2.waitKey(1650)
+                #cv2.destroyAllWindows()
+                yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
+
+                #break
+            elif cv2.waitKey(1) & 0xFF == ord('a'):
+                video_capture.release()
+                cv2.destroyAllWindows()
+                break
+        video_capture.release()
+        cv2.destroyAllWindows()
+    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
 @app.route('/takeattendance' , methods=['GET', 'POST'])
 def takeattendance():
     return render_template('takeattendance.html')
