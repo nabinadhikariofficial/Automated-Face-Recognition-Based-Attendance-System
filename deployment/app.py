@@ -94,7 +94,7 @@ def gen_frames():
             yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n')  # concat frame one by one and show result
 
             #break
-        elif cv2.waitKey(1) & 0xFF == ord('a'):
+        #elif cv2.waitKey(1) & 0xFF == ord('a'):
             video_capture.release()
             cv2.destroyAllWindows()
             break
