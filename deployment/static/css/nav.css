@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  font-family: Calibri;
+}
+header {
+  padding: 10px 0;
+  background: black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.container {
+  padding: 0 20px;
+  max-width: 960px;
+  height: 50px;
+  margin: 0 auto;
+}
+.logo-box {
+  height: 50px;
+  float: left;
+  margin-right: 60px;
+}
+.logo-box a {
+  outline: none;
+  display: block;
+}
+
+nav {
+  overflow: hidden;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  float: center;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 25px;
+  height: 70px;
+  line-height: 70px;
+  transition: 0.5s linear;
+}
+nav a {
+  text-decoration: none;
+  display: block;
+  position: relative;
+  color: #868686;
+  text-transform: uppercase;
+}
+nav a:after {
+  content: "";
+  width: 0;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 15px;
+  background: #868686;
+  transition: width 0.5s linear;
+}
+nav a:hover:after {
+  width: 100%;
+}
+
+@media screen and (max-width: 660px) {
+  header {
+    text-align: center;
+  }
+  .logo-box {
+    float: none;
+    display: inline-block;
+    margin: 0 0 16px 0;
+  }
+  ul {
+    float: none;
+  }
+  nav li:first-of-type {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 700px) {
+  nav {
+    overflow: visible;
+  }
+  nav li {
+    display: block;
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+  }
+  nav li:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  nav a:after {
+    content: none;
+  }
+  header{
+    height: 180px;
+  }
+}

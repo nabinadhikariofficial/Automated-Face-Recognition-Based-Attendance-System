@@ -1,0 +1,248 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Calibri;
+}
+
+.form {
+  height: 70%;
+  width: 30%;
+  background: white;
+  position: relative;
+  margin: 2% auto;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.button-box {
+  width: 110px;
+  margin: 35px auto;
+  position: relative;
+  box-shadow: 0 0 20px 9px #be67441f;
+  border-radius: 30px;
+}
+.toggle {
+  padding: 10px 30px;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  outline: none;
+  position: relative;
+}
+
+#btn {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background-color: #2a2a72;
+  background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+  border-radius: 30px;
+  transition: 0.5s;
+}
+form .text {
+  /*Username and Password*/
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
+}
+.text input {
+  /*Username and Password input*/
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.ep {
+  /*Username and Password display*/
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.underline::before {
+  /*Underlined below username and password*/
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: #2691d9;
+  transition: 0.5s;
+}
+.text input:focus ~ .ep,
+.text input:valid ~ .ep {
+  /*Transition after selection of username and password*/
+  font-weight: bold;
+  top: -5px;
+  color: #2691d9;
+}
+.text input:focus ~ .underline::before,
+.text input:valid ~ .underline::before {
+  /*Transition of undrerlined dashafter selection of username and password*/
+  width: 100%;
+}
+.sh {
+  /*Show password div*/
+  margin: -5px 0 20px 5px;
+  color: #0d324d;
+  cursor: pointer;
+}
+.incorrect {
+  margin: -5px 0 20px 5px;
+  color: #ff3333;
+}
+.show {
+  /*Show password color*/
+  color: #2691d9;
+}
+.show:hover {
+  /*Show password hover*/
+  text-decoration: underline;
+}
+label > input[type="checkbox"]:checked + * {
+  /*Show password after clicking*/
+  font-weight: bold;
+  color: rgb(21, 255, 0);
+}
+.login {
+  /*Login in button*/
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  cursor: pointer;
+  outline: none;
+}
+.center {
+  left: 5%;
+  width: 80%;
+  padding: 10px;
+  position: relative;
+  height: 60%;
+}
+.center-log {
+  margin: auto;
+  width: 50%;
+}
+.photo {
+  position: absolute;
+  width: 15px;
+  height: 20px;
+  margin-top: 4.9%;
+  margin-left: -5%;
+}
+
+.signup {
+  text-align: center;
+}
+
+.upload {
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  margin-top: 2%;
+}
+.font {
+  font-weight: bold;
+  font-family: Garamond, serif;
+  font-size: 30px;
+}
+.fontt {
+  font-weight: bold;
+  font-family: Garamond, serif;
+  font-size: 40px;
+}
+
+.navbtn {
+  cursor: pointer;
+  display: list-item;
+  background: black;
+  color: white;
+  height: fit-content;
+  border-radius: 20px;
+  margin-top: 0%;
+  align-items: center;
+  height: 5%;
+  width: 10%;
+  padding: 10px;
+}
+.navbtn:hover {
+  background-color: green;
+}
+
+.list {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+.head {
+  color: black;
+}
+.headd {
+  height: 10%;
+}
+.system {
+  border: 3px solid green;
+  margin: auto;
+}
+
+.image {
+  border: 3px solid red;
+  width: 100px;
+  height: 100px;
+  margin-top: 4%;
+  margin-left: 20%;
+  display: inline-block;
+}
+.details {
+  margin-top: -9%;
+  border: 3px solid green;
+  width: 100px;
+  height: 100px;
+  margin-left: 60%;
+  display: inline-block;
+}
+.button-display{
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  margin-top: 16%;
+ 
+}
+.camera{
+  width: 100px;
+  height: 100px;
+}
+.display-text{
+  text-align: center;
+  margin: auto;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 20px;
+}
+@media screen and (max-width: 700px) {
+  .font{
+    font-size: 20px;
+    margin-top: 6%;
+  }
+  .form{
+    margin-top: 4%;
+    width: 300px;
+  }
+}
