@@ -77,7 +77,7 @@ nav a:hover:after {
     margin-left: 0;
   }
 }
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 700px) {
   nav {
     overflow: visible;
   }
@@ -92,5 +92,8 @@ nav a:hover:after {
   }
   nav a:after {
     content: none;
+  }
+  header{
+    height: 180px;
   }
 }

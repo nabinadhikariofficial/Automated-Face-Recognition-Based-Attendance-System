@@ -64,7 +64,13 @@ def detectfaces():
     else:
         return render_template('detectfaces.html', context={}, len=0, zip=zip)
 
+@app.route('/takeattendance' , methods=['GET', 'POST'])
+def takeattendance():
+    return render_template('takeattendance.html')
 
+@app.route('/attendancedetails' , methods=['GET', 'POST'])
+def attendancedetails():
+    return render_template('attendancedetails.html')
 # Running the app
 if __name__ == "__main__":
     app.run(host=host_add, port=port_add, debug=True)
