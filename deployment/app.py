@@ -72,8 +72,9 @@ def detectfaces():
 def takeattendance():
     return render_template('takeattendance.html')
 
-camera = cv2.VideoCapture(0)
+
 def gen_frames():  
+    camera = cv2.VideoCapture('192.168.6.130.8080')
     while True:
         success, frame = camera.read()  # read the camera frame
         if not success:
