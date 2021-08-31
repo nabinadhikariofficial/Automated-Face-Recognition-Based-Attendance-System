@@ -69,32 +69,20 @@ def detectfaces():
 
 
     
+global capture
+capture = 0
 
 
 @app.route('/takeattendance' , methods=['GET', 'POST'])
 def takeattendance():
-    return render_template('takeattendance.html')
-
-
-global capture
-capture = 0
-
-@app.route('/requests',methods=['POST','GET'])
-def tasks():
     global capture
 
     if request.method =='POST':
         if request.form.get("capture") =='Capture':
             global capture
             capture=1
-
-        
-        
-
-    elif request.method=='Get':
-        return render_template('takeattendance.html')
-    
     return render_template('takeattendance.html')
+
 
 
 def live_video(): 
@@ -142,7 +130,8 @@ def live_video():
                     b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
             except Exception as e:
                 pass
-
+    camera.release
+    cv2.destroyAllWindows()
             
 
 
