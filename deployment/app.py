@@ -76,12 +76,12 @@ def takeattendance():
     return render_template('takeattendance.html')
 
 
-global capture, camera
+global capture
 capture = 0
 
 @app.route('/requests',methods=['POST','GET'])
 def tasks():
-    global camera,capture
+    global capture
 
     if request.method =='POST':
         if request.form.get("capture") =='Capture':
@@ -98,7 +98,7 @@ def tasks():
 
 
 def live_video(): 
-    global camera, capture
+    global capture
     cascPath = "./haarcascade_frontalface_default.xml"
     faceCascade = cv2.CascadeClassifier(cascPath)
     
