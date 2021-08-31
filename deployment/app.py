@@ -113,6 +113,7 @@ def live_video():
             os.mkdir('./capture')
         except OSError as error:
             pass
+
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = faceCascade.detectMultiScale(
             gray,
@@ -142,6 +143,7 @@ def live_video():
             except Exception as e:
                 pass
 
+            
 
 
 

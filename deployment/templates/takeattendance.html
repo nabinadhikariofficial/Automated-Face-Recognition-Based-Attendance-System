@@ -15,8 +15,13 @@
       <div class="col-lg-8  offset-lg-2">
         <h3 class="mt-5">Camera</h3>
           
-                   
-        <img src="{{ url_for('capture_feed') }}" width="100%">
+        <section class="videos">
+          <iframe width="650" height="550" 
+           src="{{ url_for('capture_feed') }}"
+            frameborder="0" allowfullscreen>
+          </iframe>
+        </section>
+        
         <form method="post" action="{{ url_for('tasks') }}" >
           <input type="submit" value="Capture" name="capture"/>
         </form>
