@@ -1,6 +1,6 @@
 from retinaface import RetinaFace
 from matplotlib import pyplot as plt
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify, Markup, session, redirect, url_for, Response
 import os
 from werkzeug.utils import secure_filename
 import cv2
@@ -10,14 +10,7 @@ from tensorflow.keras.models import load_model
 import pickle
 import numpy as np
 from sklearn.preprocessing import Normalizer
-from flask import Flask, request, render_template, jsonify, Markup, session, redirect, url_for, Response
-import os
-from werkzeug.utils import secure_filename
-import cv2
-import time
 import datetime
-import numpy as np
-from threading import Thread
 
 
 UPLOAD_FOLDER = './uploads/'
@@ -110,9 +103,9 @@ def DetectFaces():
             info = face_detection(filename_full)
         context = {'message': message, 'image_info': info,
                    'img_time': str(int(time.time()))}
-        return render_template('detectfaces.html', context=context, len=len(info), zip=zip)
+        return render_template('DetectFaces.html', context=context, len=len(info), zip=zip)
     else:
-        return render_template('detectfaces.html', context={}, len=0, zip=zip)
+        return render_template('DetectFaces.html', context={}, len=0, zip=zip)
 
 
 @app.route('/TakeAttendance', methods=['GET', 'POST'])
@@ -134,24 +127,23 @@ def TakeAttendance():
             print(result)
         context = {'message': message, 'image_info': info,
                    'img_time': str(int(time.time()))}
-        return render_template('takeattendance.html', context=context, len=len(info), zip=zip)
+        return render_template('TakeAttendance.html', context=context, len=len(info), zip=zip)
     else:
-        return render_template('takeattendance.html', context={}, len=0, zip=zip)
+        return render_template('TakeAttendance.html', context={}, len=0, zip=zip)
 
 
 global capture
 capture = 0
 
 
-@app.route('/takeattendance', methods=['GET', 'POST'])
-def takeattendance():
+@app.route('/CameraAttendance', methods=['GET', 'POST'])
+def CameraAttendance():
     global capture
-
     if request.method == 'POST':
         if request.form.get("capture") == 'Capture':
             global capture
             capture = 1
-    return render_template('takeattendance.html')
+    return render_template('CameraAttendance.html')
 
 
 def live_video():
@@ -206,9 +198,9 @@ def capture_feed():
     return Response(live_video(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-@app.route('/attendancedetails', methods=['GET', 'POST'])
-def attendancedetails():
-    return render_template('attendancedetails.html')
+@app.route('/AttendanceDetails', methods=['GET', 'POST'])
+def AttendanceDetails():
+    return render_template('AttendanceDetails.html')
 
 
 # Running the app

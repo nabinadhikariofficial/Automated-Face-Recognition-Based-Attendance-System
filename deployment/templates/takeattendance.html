@@ -41,33 +41,6 @@
       </div>
       {% endfor %}
     </div>
-
-    {% endblock content%}
-    {% block title %}Homepage{% endblock %}
-    {% block content %}
-
-    <!-- <div class = "button-display">
-  <a href="{{url_for('capture_feed')}}">
-    <img class="camera" src="\static\img\camera.png" >
-  </a>
+  </div>
 </div>
-<div class="display-text">
-  Click here to open camera
-</div> -->
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8  offset-lg-2">
-          <h3 class="mt-5">Camera</h3>
-
-          <section class="videos">
-            <iframe width="650" height="550" src="{{ url_for('capture_feed') }}" frameborder="0" allowfullscreen>
-            </iframe>
-          </section>
-
-          <form method="POST">
-            <input type="submit" value="Capture" name="capture" />
-          </form>
-        </div>
-      </div>
-
-      {% endblock %}
+{% endblock %}
