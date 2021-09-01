@@ -3,8 +3,8 @@
 
 <head>
   <title>{% block title %}{% endblock %}</title>
-  <link rel="stylesheet" href="{{url_for('static',filename="css/style.css")}}">
-  <link rel="stylesheet" href="{{url_for('static',filename="css/nav.css")}}">
+  <link rel="stylesheet" href="{{url_for('static',filename=" css/style.css")}}">
+  <link rel="stylesheet" href="{{url_for('static',filename=" css/nav.css")}}">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,9 +20,10 @@
     <div class="container">
       <nav>
         <ul>
-          <li><a href="{{url_for('Index')}}">Home</a></li>
-          <li><a href="{{url_for('DetectFaces')}}">Detect Faces</a></li>
-	  <li><a href="{{url_for('TakeAttendance')}}">Detect Faces</a></li>
+          <li><a href="{{url_for('index')}}">Home</a></li>
+          <li><a href="{{url_for('detectfaces')}}">Detect Faces</a></li>
+          <li><a href="{{url_for('takeattendance')}}">Take Attendance</a></li>
+          <li><a href="{{url_for('attendancedetails')}}">Attendance Details</a></li>
         </ul>
       </nav>
     </div>

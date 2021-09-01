@@ -3,22 +3,16 @@
   padding: 0;
   font-family: Calibri;
 }
-.whole {
-  height: 100%;
-  width: 100%;
-  background-color: whitesmoke;
-  background-position: center;
-  background-size: cover;
-  position: absolute;
-}
 
 .form {
   height: 70%;
   width: 30%;
-  background: #ffff;
+  background: white;
   position: relative;
   margin: 2% auto;
   padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
 }
 
 .button-box {
@@ -52,7 +46,7 @@ form .text {
   /*Username and Password*/
   position: relative;
   border-bottom: 2px solid #adadad;
-  margin: 30px 0;
+  margin: 30px -40px 20px 10px;
 }
 .text input {
   /*Username and Password input*/
@@ -75,6 +69,7 @@ form .text {
   pointer-events: none;
   transition: 0.5s;
 }
+
 .underline::before {
   /*Underlined below username and password*/
   content: "";
@@ -82,7 +77,7 @@ form .text {
   top: 40px;
   left: 0;
   width: 0%;
-  height: 2px;
+  height: 3px;
   background: #2691d9;
   transition: 0.5s;
 }
@@ -170,8 +165,7 @@ label > input[type="checkbox"]:checked + * {
 .fontt {
   font-weight: bold;
   font-family: Garamond, serif;
-  font-size: 30px;
-  color: green;
+  font-size: 40px;
 }
 
 .navbtn {
@@ -223,4 +217,32 @@ label > input[type="checkbox"]:checked + * {
   height: 100px;
   margin-left: 60%;
   display: inline-block;
+}
+.button-display{
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  margin-top: 16%;
+ 
+}
+.camera{
+  width: 100px;
+  height: 100px;
+}
+.display-text{
+  text-align: center;
+  margin: auto;
+  width: fit-content;
+  font-weight: bold;
+  font-size: 20px;
+}
+@media screen and (max-width: 700px) {
+  .font{
+    font-size: 20px;
+    margin-top: 6%;
+  }
+  .form{
+    margin-top: 4%;
+    width: 300px;
+  }
 }

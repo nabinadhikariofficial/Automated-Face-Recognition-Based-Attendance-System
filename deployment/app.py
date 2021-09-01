@@ -10,6 +10,15 @@ from tensorflow.keras.models import load_model
 import pickle
 import numpy as np
 from sklearn.preprocessing import Normalizer
+from flask import Flask, request, render_template, jsonify, Markup, session, redirect, url_for, Response
+import os
+from werkzeug.utils import secure_filename
+import cv2
+import time
+import datetime
+import numpy as np
+from threading import Thread
+
 
 UPLOAD_FOLDER = './uploads/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -128,6 +137,78 @@ def TakeAttendance():
         return render_template('takeattendance.html', context=context, len=len(info), zip=zip)
     else:
         return render_template('takeattendance.html', context={}, len=0, zip=zip)
+
+
+global capture
+capture = 0
+
+
+@app.route('/takeattendance', methods=['GET', 'POST'])
+def takeattendance():
+    global capture
+
+    if request.method == 'POST':
+        if request.form.get("capture") == 'Capture':
+            global capture
+            capture = 1
+    return render_template('takeattendance.html')
+
+
+def live_video():
+    global capture
+    cascPath = "./haarcascade_frontalface_default.xml"
+    faceCascade = cv2.CascadeClassifier(cascPath)
+
+    camera = cv2.VideoCapture(0)
+
+    while True:
+
+        success, frame = camera.read()  # read the camera frame
+        try:
+            os.mkdir('./capture')
+        except OSError as error:
+            pass
+
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = faceCascade.detectMultiScale(
+            gray,
+            scaleFactor=1.1,
+            minNeighbors=5,
+            minSize=(30, 30)
+        )
+
+        # Draw a rectangle around the faces
+        for (x, y, w, h) in faces:
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+        if not success:
+            break
+        else:
+            if(capture):
+                capture = 0
+                now = datetime.datetime.now()
+                p = os.path.sep.join(
+                    ['capture', "capture_{}.png".format(str(now).replace(":", ''))])
+                cv2.imwrite(p, frame)
+            try:
+                ret, buffer = cv2.imencode('.jpg', frame)
+                frame = buffer.tobytes()
+                yield (b'--frame\r\n'
+                       b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
+            except Exception as e:
+                pass
+    camera.release
+    cv2.destroyAllWindows()
+
+
+@app.route('/capture_feed')
+def capture_feed():
+    return Response(live_video(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+@app.route('/attendancedetails', methods=['GET', 'POST'])
+def attendancedetails():
+    return render_template('attendancedetails.html')
 
 
 # Running the app
