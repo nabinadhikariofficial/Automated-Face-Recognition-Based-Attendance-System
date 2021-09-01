@@ -78,14 +78,14 @@ port_add = 5000
 
 
 @app.route('/')
-def index():
+def Index():
     return render_template('login.html')
 
 # webpage where user can provide image
 
 
-@app.route('/detectfaces', methods=['GET', 'POST'])
-def detectfaces():
+@app.route('/DetectFaces', methods=['GET', 'POST'])
+def DetectFaces():
     if request.method == 'POST':
         file = request.files['file']
         if 'file' not in request.files:
@@ -106,8 +106,8 @@ def detectfaces():
         return render_template('detectfaces.html', context={}, len=0, zip=zip)
 
 
-@app.route('/takeattendance', methods=['GET', 'POST'])
-def takeattendance():
+@app.route('/TakeAttendance', methods=['GET', 'POST'])
+def TakeAttendance():
     if request.method == 'POST':
         file = request.files['file']
         if 'file' not in request.files:
