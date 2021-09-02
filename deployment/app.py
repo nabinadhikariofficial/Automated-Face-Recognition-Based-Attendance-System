@@ -9,6 +9,7 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 import pickle
 import numpy as np
+import pandas as pd
 from sklearn.preprocessing import Normalizer
 import datetime
 
@@ -110,6 +111,7 @@ def DetectFaces():
 
 @app.route('/TakeAttendance', methods=['GET', 'POST'])
 def TakeAttendance():
+    global s
     if request.method == 'POST':
         file = request.files['file']
         if 'file' not in request.files:
@@ -124,12 +126,31 @@ def TakeAttendance():
             filename_full = basedir + "\\uploads\\" + filename
             info = face_detection(filename_full)
             result = get_face_encodings(len(info))
-            print(result)
+            present = []
+            data = pd.read_csv(os.path.abspath(os.getcwd() + os.sep + os.pardir)+"\\Notebook_Scripts_Data\\crnAndName.csv")
+            for i in data['CRN']:
+                count = 0 
+                for j in result:
+                    if i in j:
+                        present.append('Present')
+                        count = 1
+                        break
+                    else:
+                        continue
+                if count == 0:
+                    present.append("Abesnt")
+            data["Status"] = present
+            data_list = data.values.tolist()
+            title = (data.columns.values.tolist())
+            total = len(present)
+            present_no = len(result)
+            absent_no = total - present_no
         context = {'message': message, 'image_info': info,
                    'img_time': str(int(time.time()))}
-        return render_template('TakeAttendance.html', context=context, len=len(info), zip=zip)
+        return render_template('TakeAttendance.html', context=context, len=len(info),tables = data_list , title = title , result = result ,total = total , present = present_no , absent = absent_no)
     else:
-        return render_template('TakeAttendance.html', context={}, len=0, zip=zip)
+        return render_template('TakeAttendance.html', context={}, len=0)
+
 
 
 global capture
@@ -193,6 +214,7 @@ def live_video():
     cv2.destroyAllWindows()
 
 
+
 @app.route('/capture_feed')
 def capture_feed():
     return Response(live_video(), mimetype='multipart/x-mixed-replace; boundary=frame')
@@ -200,6 +222,9 @@ def capture_feed():
 
 @app.route('/AttendanceDetails', methods=['GET', 'POST'])
 def AttendanceDetails():
+ 
+    
+    data = pd.read_csv(os.path.normpath(os.getcwd() + os.sep + os.pardir)+"\\Notebook_Scripts_Data\\crnAndName.csv")
     return render_template('AttendanceDetails.html')
 
 
