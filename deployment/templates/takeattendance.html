@@ -19,52 +19,53 @@
   </div>
 </div>
 <div style="display: flex;">
-  <div class = "image-sec">
+  <div class="image-sec">
     <div class="row">
-      {% for i  in range(len) %}
+      {% for i in range(len) %}
       <div class="card" style="width: 100px;height:100px;margin-bottom: 6%;">
-        <img class="card-img-top" src='/static/img/faces/instant/face_{{i+1}}.jpg?{{context.img_time}}' style="height :80px; width:80px;">
+        <img class="card-img-top" src='/static/img/faces/instant/face_{{i+1}}.jpg?{{context.img_time}}'
+          style="height :80px; width:80px;">
         <div class="card-body" style="width: 80px;">
           <p class="card-title" style="text-align: center;">{{result[i][-3:]}}</p>
         </div>
       </div>
-     
+
       {% endfor %}
     </div>
     {% if total != NULL %}
-      <table class="table-content" style="width: 450px;">
-        <tr>
-          <th>Total Students: {{total}}</th>
-          <th style="color: green;">Students Present: {{present}}</th>
-          <th style="color: red;">Students Absent: {{absent}}</th>
-        </tr>
-      </table>
-      {% endif%}
+    <table class="table-content" style="width: 450px;">
+      <tr>
+        <th>Total Students: {{total}}</th>
+        <th style="color: green;">Students Present: {{present}}</th>
+        <th style="color: red;">Students Absent: {{absent}}</th>
+      </tr>
+    </table>
+    {% endif%}
   </div>
-  <div class = "result">
+  <div class="result">
     {% if tables != NULL %}
-      <table class='table-content'>
-        <tr>
-          {% for i in title %}
-            <th>{{i}}</th>
-          {% endfor %}
-        </tr>
-        {% for element in tables %}
-          {% if "Present" in element[-1] %}
-          <tr>
-            {% for name in element %}
-              <th style="color: green;">{{name}}</th>
-            {% endfor %}
-          </tr>
-          {% else %}
-          <tr>
-            {% for name in element %}
-              <th style="color: red;">{{name}}</th>
-            {% endfor %}
-          </tr>
-          {% endif %}
+    <table class='table-content'>
+      <tr>
+        {% for i in title %}
+        <th>{{i}}</th>
         {% endfor %}
-      </table>
+      </tr>
+      {% for element in tables %}
+      {% if "Present" in element[-1] %}
+      <tr>
+        {% for name in element %}
+        <th style="color: green;">{{name}}</th>
+        {% endfor %}
+      </tr>
+      {% else %}
+      <tr>
+        {% for name in element %}
+        <th style="color: red;">{{name}}</th>
+        {% endfor %}
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </table>
     {% endif %}
   </div>
 
