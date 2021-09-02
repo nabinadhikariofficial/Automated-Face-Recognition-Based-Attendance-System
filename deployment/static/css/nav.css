@@ -7,11 +7,10 @@ header {
   background: black;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
-.container {
-  padding: 0 20px;
-  max-width: 960px;
+.container_our {
   height: 50px;
-  margin: 0 auto;
+  width: 100%;
+  align-content: center;
 }
 .logo-box {
   height: 50px;
@@ -23,22 +22,15 @@ header {
   display: block;
 }
 
-nav {
-  overflow: hidden;
+nav ul {
+  width: 100%;
+  text-align: center;
 }
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  float: center;
-}
-
 nav li {
   display: inline-block;
-  margin-left: 25px;
+  margin-left: 20px;
   height: 70px;
   line-height: 70px;
-  transition: 0.5s linear;
 }
 nav a {
   text-decoration: none;
@@ -93,7 +85,7 @@ nav a:hover:after {
   nav a:after {
     content: none;
   }
-  header{
+  header {
     height: 180px;
   }
 }

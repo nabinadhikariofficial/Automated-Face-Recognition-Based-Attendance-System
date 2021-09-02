@@ -218,18 +218,17 @@ label > input[type="checkbox"]:checked + * {
   margin-left: 60%;
   display: inline-block;
 }
-.button-display{
+.button-display {
   width: 100px;
   height: 100px;
   margin: auto;
   margin-top: 16%;
- 
 }
-.camera{
+.camera {
   width: 100px;
   height: 100px;
 }
-.display-text{
+.display-text {
   text-align: center;
   margin: auto;
   width: fit-content;
@@ -237,27 +236,27 @@ label > input[type="checkbox"]:checked + * {
   font-size: 20px;
 }
 @media screen and (max-width: 700px) {
-  .font{
+  .font {
     font-size: 20px;
     margin-top: 6%;
   }
-  .form{
+  .form {
     margin-top: 4%;
     width: 300px;
   }
 }
-.image-sec{
-  height : fit-content; 
-  width : 57%;
-  margin-top: 15%;
+.image-sec {
+  height: fit-content;
+  width: 57%;
+  margin-top: 5%;
   margin-left: 3%;
   margin-right: 2%;
 }
 
-.result{
+.result {
   width: fit-content;
   height: fit-content;
-  margin-top: 13%;
+  margin-top: 3%;
 }
 .table-content {
   border-collapse: collapse;
