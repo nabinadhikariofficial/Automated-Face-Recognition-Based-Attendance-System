@@ -17,8 +17,7 @@ UPLOAD_FOLDER = './uploads/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-modeldir = os.path.normpath(
-    os.getcwd() + os.sep + os.pardir)+"\\Notebook_Scripts_Data\\model\\"
+maindir = basedir[:-11]
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -58,8 +57,10 @@ def process_image(image_path):
 
 
 def get_face_encodings(images):
-    model = load_model(modeldir+'facenet_keras.h5')
-    model_svc = pickle.load(open(modeldir+'20210831-184738_svc.pk', 'rb'))
+    model = load_model(
+        maindir+"Notebook_Scripts_Data\\model\\facenet_keras.h5")
+    model_svc = pickle.load(
+        open(maindir+'Notebook_Scripts_Data\\model\\20210831-184738_svc.pk', 'rb'))
     for image in range(images):
         image_path = basedir + "\\static\\img\\faces\\instant\\face_" + \
             str(image+1) + ".jpg"
