@@ -112,7 +112,7 @@ def Index():
         account = cursor.fetchone()
         if account:
             # Create session data, we can access this data in other routes
-            session.permanent = True
+            # session.permanent = True
             session['loggedin'] = True
             session['id'] = account['id']
             session['username'] = account['username']
