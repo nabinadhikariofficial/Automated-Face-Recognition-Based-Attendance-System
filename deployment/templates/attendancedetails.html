@@ -2,4 +2,10 @@
 {% block title %}Homepage{% endblock %}
 {% block content %}
 
+{% for i in range(48) %}
+<img src='https://khwopa.edu.np/uploads/student/KCE-2074-BCT-0{{i+1}}.JPG'>
+{% endfor %}
+
+<!-- only for test -->
+<script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
 {% endblock %}

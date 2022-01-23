@@ -1,12 +1,17 @@
-import os
+import mysql.connector
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-print(basedir)
-print(basedir[:-11])
+mydb = mysql.connector.connect(
+    host="sql6.freesqldatabase.com",
+    user="sql6467504",
+    passwd="DyECurrXmg",
+    database="sql6467504"
+)
 
-context={}
+# making cursor
+cursor = mydb.cursor(dictionary=True)
+username="KCE074BCT023"
+password="b532f1b8869ba150ee239776740ccb7a7c6040a59d14e6c227ca48c5bf3a3315"
+cursor.execute('SELECT * FROM accounts WHERE username = %s AND password = %s', (username, password,))
 
-if(context):
-    print("asd")
-else:
-    print("no")
+account = cursor.fetchone()
+print(account)
