@@ -92,10 +92,8 @@ def Index():
 def DetectFaces():
     if request.method == 'POST':
         file = request.files['file']
-        if 'file' not in request.files:
-            message = "Please Select a Image first"
-        elif file.filename == '':
-            message = "Please Select a Image first"
+        if (not file):
+            print("no file")
         else:
             message = "Image accepted"
             filename = secure_filename("image_"+str(int(time.time()))+".jpg")
@@ -103,12 +101,10 @@ def DetectFaces():
                 basedir, app.config['UPLOAD_FOLDER'], filename))
             filename_full = basedir + "\\uploads\\" + filename
             info = face_detection(filename_full)
-        context = {'message': message, 'image_info': info,
+            context = {'message': message, 'image_info': info,
                    'img_time': str(int(time.time()))}
-        return render_template('DetectFaces.html', context=context, len=len(info), zip=zip)
-    else:
-        return render_template('DetectFaces.html', context={}, len=0, zip=zip)
-
+            return render_template('DetectFaces.html', context=context, len=len(info), zip=zip)
+    return render_template('DetectFaces.html', context={}, len=0, zip=zip)
 
 @app.route('/TakeAttendance', methods=['GET', 'POST'])
 def TakeAttendance():
