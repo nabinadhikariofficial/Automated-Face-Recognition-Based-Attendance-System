@@ -5,8 +5,8 @@
 }
 
 .form {
-  height: 500px;
-  width: 20%;
+  height: fit-content;
+  width: 30%;
   background: white;
   position: relative;
   margin: 2% auto;
