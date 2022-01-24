@@ -1,6 +1,8 @@
 from retinaface import RetinaFace
 from matplotlib import pyplot as plt
-from flask import Flask, request, render_template, jsonify, Markup, session, redirect, url_for, Response
+from flask import Flask, request, render_template, session, redirect, url_for, Response
+import hashlib
+import mysql.connector
 import os
 from werkzeug.utils import secure_filename
 import cv2
@@ -18,8 +20,7 @@ UPLOAD_FOLDER = './uploads/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-modeldir = os.path.normpath(
-    os.getcwd() + os.sep + os.pardir)+"\\Notebook_Scripts_Data\\model\\"
+maindir = basedir[:-11]
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -59,8 +60,10 @@ def process_image(image_path):
 
 
 def get_face_encodings(images):
-    model = load_model(modeldir+'facenet_keras.h5')
-    model_svc = pickle.load(open(modeldir+'20210831-184738_svc.pk', 'rb'))
+    model = load_model(
+        maindir+"\\Notebook_Scripts_Data\\model\\facenet_keras.h5")
+    model_svc = pickle.load(
+        open(maindir+'\\Notebook_Scripts_Data\\model\\20210831-184738_svc.pk', 'rb'))
     for image in range(images):
         image_path = basedir + "\\static\\img\\faces\\instant\\face_" + \
             str(image+1) + ".jpg"
@@ -76,82 +79,115 @@ def get_face_encodings(images):
     return result
 
 
+# database connection details below
+mydb = mysql.connector.connect(
+    host="sql6.freesqldatabase.com",
+    user="sql6467504",
+    passwd="DyECurrXmg",
+    database="sql6467504"
+)
+
+# host address and port
 host_add = '0.0.0.0'
 port_add = 5000
 
+# making cursor
+cursor = mydb.cursor(dictionary=True)
 
-@app.route('/')
+
+
+@app.route('/', methods=['GET', 'POST'])
 def Index():
-    return render_template('login.html')
+    msg = ''
+    # Check if "username" and "password" POST requests exist (user submitted form)
+    if 'loggedin' in session:
+        return redirect(url_for('TakeAttendance'))
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        username = request.form['username']
+        password = request.form['password']
+        username=username.upper()
+        password = hashlib.sha256(password.encode()).hexdigest()
+        cursor.execute(
+            'SELECT * FROM accounts WHERE username = %s AND password = %s', (username, password,))
+        account = cursor.fetchone()
+        if account:
+            # Create session data, we can access this data in other routes
+            # session.permanent = True
+            session['loggedin'] = True
+            session['id'] = account['id']
+            session['username'] = account['username']
+            # Redirect to profile page
+            return redirect(url_for('TakeAttendance'))
+        else:
+            # Account doesnt exist or username/password incorrect
+            msg = 'Incorrect username/password!'
+    return render_template('login.html',msg=msg)
 
 # webpage where user can provide image
 
-
 @app.route('/DetectFaces', methods=['GET', 'POST'])
 def DetectFaces():
-    if request.method == 'POST':
-        file = request.files['file']
-        if 'file' not in request.files:
-            message = "Please Select a Image first"
-        elif file.filename == '':
-            message = "Please Select a Image first"
-        else:
-            message = "Image accepted"
-            filename = secure_filename("image_"+str(int(time.time()))+".jpg")
-            file.save(os.path.join(
-                basedir, app.config['UPLOAD_FOLDER'], filename))
-            filename_full = basedir + "\\uploads\\" + filename
-            info = face_detection(filename_full)
-        context = {'message': message, 'image_info': info,
-                   'img_time': str(int(time.time()))}
-        return render_template('DetectFaces.html', context=context, len=len(info), zip=zip)
-    else:
+    if 'loggedin' in session:
+        if request.method == 'POST':
+            file = request.files['file']
+            if (not file):
+                print("no file")
+            else:
+                message = "Image accepted"
+                filename = secure_filename("image_"+str(int(time.time()))+".jpg")
+                file.save(os.path.join(
+                    basedir, app.config['UPLOAD_FOLDER'], filename))
+                filename_full = basedir + "\\uploads\\" + filename
+                info = face_detection(filename_full)
+                context = {'message': message, 'image_info': info,
+                       'img_time': str(int(time.time()))}
+                return render_template('DetectFaces.html', context=context, len=len(info), zip=zip)
         return render_template('DetectFaces.html', context={}, len=0, zip=zip)
-
+    return render_template('login.html')
 
 @app.route('/TakeAttendance', methods=['GET', 'POST'])
 def TakeAttendance():
-    global s
-    if request.method == 'POST':
-        file = request.files['file']
-        if 'file' not in request.files:
-            message = "Please Select a Image first"
-        elif file.filename == '':
-            message = "Please Select a Image first"
-        else:
-            message = "Image accepted"
-            filename = secure_filename("image_"+str(int(time.time()))+".jpg")
-            file.save(os.path.join(
-                basedir, app.config['UPLOAD_FOLDER'], filename))
-            filename_full = basedir + "\\uploads\\" + filename
-            info = face_detection(filename_full)
-            result = get_face_encodings(len(info))
-            present = []
-            data = pd.read_csv(os.path.abspath(os.getcwd() + os.sep + os.pardir)+"\\Notebook_Scripts_Data\\crnAndName.csv")
-            for i in data['CRN']:
-                count = 0 
-                for j in result:
-                    if i in j:
-                        present.append('Present')
-                        count = 1
-                        break
-                    else:
-                        continue
-                if count == 0:
-                    present.append("Abesnt")
-            data["Status"] = present
-            data_list = data.values.tolist()
-            title = (data.columns.values.tolist())
-            total = len(present)
-            present_no = len(result)
-            absent_no = total - present_no
-        context = {'message': message, 'image_info': info,
+    if 'loggedin' in session:
+        if request.method == 'POST':
+            file = request.files['file']
+            if 'file' not in request.files:
+                message = "Please Select a Image first"
+            elif file.filename == '':
+                message = "Please Select a Image first"
+            else:
+                message = "Image accepted"
+                filename = secure_filename("image_"+str(int(time.time()))+".jpg")
+                file.save(os.path.join(
+                    basedir, app.config['UPLOAD_FOLDER'], filename))
+                filename_full = basedir + "\\uploads\\" + filename
+                info = face_detection(filename_full)
+                result = get_face_encodings(len(info))
+                present = []
+                data = pd.read_csv(
+                    maindir+"\\Notebook_Scripts_Data\\crnAndName.csv")
+                for i in data['CRN']:
+                    count = 0
+                    for j in result:
+                        if i in j:
+                            present.append('Present')
+                            count = 1
+                            break
+                        else:
+                            continue
+                    if count == 0:
+                        present.append("Abesnt")
+                data["Status"] = present
+                data_list = data.values.tolist()
+                title = (data.columns.values.tolist())
+                total = len(present)
+                present_no = len(result)
+                absent_no = total - present_no
+            context = {'message': message, 'image_info': info,
                    'img_time': str(int(time.time()))}
-        return render_template('TakeAttendance.html', context=context, len=len(info),tables = data_list , title = title , result = result ,total = total , present = present_no , absent = absent_no)
-    else:
-        return render_template('TakeAttendance.html', context={}, len=0)
-
-
+            return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no)
+        else:
+            return render_template('TakeAttendance.html', context={}, len=0)
+    return render_template('login.html')
 
 global capture
 capture = 0
@@ -160,12 +196,13 @@ capture = 0
 @app.route('/CameraAttendance', methods=['GET', 'POST'])
 def CameraAttendance():
     global capture
-    if request.method == 'POST':
-        if request.form.get("capture") == 'Capture':
-            global capture
-            capture = 1
-    return render_template('CameraAttendance.html')
-
+    if 'loggedin' in session:
+        if request.method == 'POST':
+            if request.form.get("capture") == 'Capture':
+                global capture
+                capture = 1
+        return render_template('CameraAttendance.html')
+    return render_template('login.html')
 
 def live_video():
     global capture
@@ -214,18 +251,18 @@ def live_video():
     cv2.destroyAllWindows()
 
 
-
 @app.route('/capture_feed')
 def capture_feed():
-    return Response(live_video(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    if 'loggedin' in session:
+        return Response(live_video(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return render_template('login.html')
 
 
 @app.route('/AttendanceDetails', methods=['GET', 'POST'])
 def AttendanceDetails():
- 
-    
-    #data = pd.read_csv(os.path.normpath(os.getcwd() + os.sep + os.pardir)+"\\Notebook_Scripts_Data\\crnAndName.csv")
-    return render_template('AttendanceDetails.html')
+    if 'loggedin' in session:
+        return render_template('AttendanceDetails.html')
+    return render_template('login.html')
 
 
 # Running the app
