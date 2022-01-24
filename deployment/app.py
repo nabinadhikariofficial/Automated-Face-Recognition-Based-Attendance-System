@@ -120,7 +120,7 @@ def Index():
             return redirect(url_for('Profile'))
         else:
             # Account doesnt exist or username/password incorrect
-            msg = 'Incorrect username/password!'
+            msg = 'Incorrect Username or Password'
     return render_template('login.html',msg=msg)
 
 @app.route('/Profile', methods=['GET', 'POST'])
