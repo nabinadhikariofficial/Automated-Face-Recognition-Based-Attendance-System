@@ -1,6 +1,6 @@
 from retinaface import RetinaFace
 from matplotlib import pyplot as plt
-from flask import Flask, request, render_template, jsonify, Markup, session, redirect, url_for, Response
+from flask import Flask, request, render_template, session, redirect, url_for, Response
 import hashlib
 import mysql.connector
 import os
