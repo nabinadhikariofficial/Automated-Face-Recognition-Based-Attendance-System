@@ -297,3 +297,74 @@ label > input[type="checkbox"]:checked + * {
   transform: scale(1.02);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
+
+
+
+.centerd{
+  display: inline-block;
+  margin-top: 30px;
+  margin-left: 10%;
+  border-radius: 10px;
+  width: 25%;
+  height: fit-content;
+  padding-top: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.centerdd{
+  margin: auto;
+  width: fit-content;
+  height: 200px;
+  padding: 0px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.kce{
+  width: 100%; /* or any custom size */
+  height: 100%; 
+  object-fit: contain;
+}
+
+.name{
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 10px;
+}
+
+.name-display{
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  padding-left: 10px;
+}
+.info{
+  font-size: 18px;
+}
+.info,
+.name-display{
+  display: inline;
+}
+
+.general-info{
+  width: 50%;
+  height: fit-content;
+  margin-left: 38%;
+  margin-top: -23%;
+
+}
+
+
+
+
+.topcorner{
+  width: fit-content;
+  height: fit-content;
+  position:relative;
+  float:right;
+  margin-top: -4%;
+  margin-right: 5px;
+}
+
+.general{
+  text-align: center;
+}

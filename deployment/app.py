@@ -224,7 +224,7 @@ def capture_feed():
 def AttendanceDetails():
  
     
-    data = pd.read_csv(os.path.normpath(os.getcwd() + os.sep + os.pardir)+"\\Notebook_Scripts_Data\\crnAndName.csv")
+    #data = pd.read_csv(os.path.normpath(os.getcwd() + os.sep + os.pardir)+"\\Notebook_Scripts_Data\\crnAndName.csv")
     return render_template('AttendanceDetails.html')
 
 
