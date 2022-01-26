@@ -49,7 +49,12 @@
         <input type="submit" name="submit" value="Login" class="login">
       </div>
     </form>
-    {{msg}}
+    {% if 'Incorrect' in msg %}
+    <div class='mess' >
+      {{msg}}
+    </div>
+    {% endif %}
+    
   </div>
 </div>
 

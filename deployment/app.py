@@ -101,7 +101,7 @@ def Index():
     msg = ''
     # Check if "username" and "password" POST requests exist (user submitted form)
     if 'loggedin' in session:
-        return redirect(url_for('TakeAttendance'))
+        return redirect(url_for('Profile'))
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
@@ -117,13 +117,19 @@ def Index():
             session['id'] = account['id']
             session['username'] = account['username']
             # Redirect to profile page
-            return redirect(url_for('TakeAttendance'))
+            return redirect(url_for('Profile'))
         else:
             # Account doesnt exist or username/password incorrect
-            msg = 'Incorrect username/password!'
+            msg = 'Incorrect Username or Password'
     return render_template('login.html',msg=msg)
 
+@app.route('/Profile', methods=['GET', 'POST'])
+def Profile():
+    if 'loggedin' in session:
+        return render_template('profile.html')
+    return redirect(url_for('Index'))
 # webpage where user can provide image
+
 
 @app.route('/DetectFaces', methods=['GET', 'POST'])
 def DetectFaces():
@@ -143,7 +149,7 @@ def DetectFaces():
                        'img_time': str(int(time.time()))}
                 return render_template('DetectFaces.html', context=context, len=len(info), zip=zip)
         return render_template('DetectFaces.html', context={}, len=0, zip=zip)
-    return render_template('login.html')
+    return redirect(url_for('Index'))
 
 @app.route('/TakeAttendance', methods=['GET', 'POST'])
 def TakeAttendance():
@@ -187,7 +193,7 @@ def TakeAttendance():
             return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no)
         else:
             return render_template('TakeAttendance.html', context={}, len=0)
-    return render_template('login.html')
+    return redirect(url_for('Index'))
 
 global capture
 capture = 0
@@ -202,7 +208,7 @@ def CameraAttendance():
                 global capture
                 capture = 1
         return render_template('CameraAttendance.html')
-    return render_template('login.html')
+    return redirect(url_for('Index'))
 
 def live_video():
     global capture
@@ -255,14 +261,14 @@ def live_video():
 def capture_feed():
     if 'loggedin' in session:
         return Response(live_video(), mimetype='multipart/x-mixed-replace; boundary=frame')
-    return render_template('login.html')
+    return redirect(url_for('Index'))
 
 
 @app.route('/AttendanceDetails', methods=['GET', 'POST'])
 def AttendanceDetails():
     if 'loggedin' in session:
         return render_template('AttendanceDetails.html')
-    return render_template('login.html')
+    return redirect(url_for('Index'))
 
 
 # Running the app
