@@ -127,7 +127,6 @@ def Index():
 def Profile():
     if 'loggedin' in session:
         user_data = pd.read_csv(maindir+"\\Notebook_Scripts_Data\\studentdetails.csv", index_col=0).T[session['username']].to_dict()
-        print(user_data)
         return render_template('profile.html',user_data=user_data)
     return redirect(url_for('Index'))
 # webpage where user can provide image

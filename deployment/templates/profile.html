@@ -7,17 +7,17 @@
 </div>
 <div class="centerd">
     <div class="centerdd">
-        <img src="https://khwopa.edu.np/uploads/student/KCE-2074-BCT-023.JPG" class="kce">
+        <img src= {{user_data['Image']}} class="kce">
     </div>
     <div class="name">
-        <h3 class="name-display">Nabin Adhikari</h3>
+        <h3 class="name-display">{{user_data['Full Name']}}</h3>
     </div>
     <hr>
     <h5 class="name-display">Semester:</h5>
-    <p class="info">8th semester</p>
+    <p class="info">{{user_data['Semester']}}</p>
     <br>
     <h5 class="name-display">CRN:</h5>
-    <p class="info">KCE074BCT023</p>
+    <p class="info">KCE074BCT{{user_data['Image'][-7:-4]}}</p>
 </div>
 <div class="general-info">
     <div class="card shadow-sm">
@@ -29,27 +29,27 @@
                 <tr>
                     <th width="30%">DEPT</th>
                     <td width="2%">:</td>
-                    <td>Computer Engineering</td>
+                    <td>{{user_data['Department']}}</td>
                 </tr>
                 <tr>
                     <th width="30%">E-MAIL</th>
                     <td width="2%">:</td>
-                    <td>nabin@gmail.com</td>
+                    <td>{{user_data['Gmail']}}</td>
                 </tr>
                 <tr>
                     <th width="30%">DOB</th>
                     <td width="2%">:</td>
-                    <td>2055-02-13</td>
+                    <td>{{user_data['DOB']}}</td>
                 </tr>
                 <tr>
                     <th width="30%">CONTACT NO.</th>
                     <td width="2%">:</td>
-                    <td>9860495157</td>
+                    <td>{{user_data['Contact no.']}}</td>
                 </tr>
                 <tr>
                     <th width="30%">BATCH:</th>
                     <td width="2%">:</td>
-                    <td>2074/2017</td>
+                    <td>{{user_data['Batch']}}</td>
                 </tr>
             </table>
         </div>
