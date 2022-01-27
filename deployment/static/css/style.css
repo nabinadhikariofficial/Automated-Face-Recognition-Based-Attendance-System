@@ -5,8 +5,8 @@
 }
 
 .form {
-  height: 500px;
-  width: 20%;
+  height: fit-content;
+  width: 400px;
   background: white;
   position: relative;
   margin: 2% auto;
@@ -15,12 +15,12 @@
   border-radius: 10px;
 }
 
-.button-box {
-  width: 110px;
-  margin: 35px auto;
+.image-box {
+  margin: auto;
+  width: 150px;
   position: relative;
-  box-shadow: 0 0 20px 9px #be67441f;
-  border-radius: 30px;
+  height: 150px;
+  margin-top: 10px;
 }
 .toggle {
   padding: 10px 30px;
