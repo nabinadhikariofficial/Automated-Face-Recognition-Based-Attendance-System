@@ -5,8 +5,8 @@
 }
 
 .form {
-  height: 500px;
-  width: 20%;
+  height: fit-content;
+  width: 400px;
   background: white;
   position: relative;
   margin: 2% auto;
@@ -15,12 +15,12 @@
   border-radius: 10px;
 }
 
-.button-box {
-  width: 110px;
-  margin: 35px auto;
+.image-box {
+  margin: auto;
+  width: 150px;
   position: relative;
-  box-shadow: 0 0 20px 9px #be67441f;
-  border-radius: 30px;
+  height: 150px;
+  margin-top: 10px;
 }
 .toggle {
   padding: 10px 30px;
@@ -346,7 +346,7 @@ label > input[type="checkbox"]:checked + * {
   width: 50%;
   height: fit-content;
   margin-left: 38%;
-  margin-top: -23%;
+  margin-top: -300px;
 
 }
 
@@ -358,11 +358,25 @@ label > input[type="checkbox"]:checked + * {
   height: fit-content;
   position:relative;
   float:right;
-  margin-top: -4%;
-  margin-right: 5px;
+  margin-top: -50px;
+  margin-right: 10px;
 }
 
 .general{
   text-align: center;
 }
 
+.mess{
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  margin-left: -15px;
+  padding-left: 10px;
+  margin-top: 15px;
+  width: 320px;
+  height: 40px;
+  padding-top: 10px;
+  background-color: #FAA0A0;
+  color: red;
+  border-radius: 10px;
+}

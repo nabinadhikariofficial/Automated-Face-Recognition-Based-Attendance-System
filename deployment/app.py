@@ -120,16 +120,24 @@ def Index():
             return redirect(url_for('Profile'))
         else:
             # Account doesnt exist or username/password incorrect
-            msg = 'Incorrect username/password!'
+            msg = 'Incorrect Username or Password'
     return render_template('login.html',msg=msg)
 
 @app.route('/Profile', methods=['GET', 'POST'])
 def Profile():
     if 'loggedin' in session:
-        return render_template('profile.html')
+        user_data = pd.read_csv(maindir+"\\Notebook_Scripts_Data\\studentdetails.csv", index_col=0).T[session['username']].to_dict()
+        return render_template('profile.html',user_data=user_data)
     return redirect(url_for('Index'))
 # webpage where user can provide image
 
+@app.route('/logout')
+def logout():
+    session.pop('loggedin', None)
+    session.pop('id', None)
+    session.pop('username', None)
+    # Redirect to login page
+    return redirect(url_for('Index'))
 
 @app.route('/DetectFaces', methods=['GET', 'POST'])
 def DetectFaces():
@@ -181,7 +189,7 @@ def TakeAttendance():
                         else:
                             continue
                     if count == 0:
-                        present.append("Abesnt")
+                        present.append("Absent")
                 data["Status"] = present
                 data_list = data.values.tolist()
                 title = (data.columns.values.tolist())

@@ -2,55 +2,56 @@
 {% block title %}Homepage{% endblock %}
 {% block content %}
 <div class="topcorner">
-    <button type="button" class="btn btn-danger">Log Out</button>
+    <button type="button" class="btn btn-danger"><a href="{{url_for('logout')}}"
+            style="text-decoration : none; color : #000000;">Log Out</a></button>
 </div>
 <div class="centerd">
     <div class="centerdd">
-        <img src="https://khwopa.edu.np/uploads/student/KCE-2074-BCT-023.JPG" class="kce">
+        <img src= {{user_data['Image']}} class="kce">
     </div>
     <div class="name">
-        <h3 class="name-display">Nabin Adhikari</h3>
+        <h3 class="name-display">{{user_data['Full Name']}}</h3>
     </div>
     <hr>
     <h5 class="name-display">Semester:</h5>
-    <p class="info">8th semester</p>
+    <p class="info">{{user_data['Semester']}}</p>
     <br>
     <h5 class="name-display">CRN:</h5>
-    <p class="info">KCE074BCT023</p>
+    <p class="info">KCE074BCT{{user_data['Image'][-7:-4]}}</p>
 </div>
 <div class="general-info">
     <div class="card shadow-sm">
-    <div class="card-header bg-transparent border-0">
-    <h3 class="mb-0 general">General Information</h3>
+        <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0 general">General Information</h3>
+        </div>
+        <div class="card-body pt-0">
+            <table class="table table-bordered">
+                <tr>
+                    <th width="30%">DEPT</th>
+                    <td width="2%">:</td>
+                    <td>{{user_data['Department']}}</td>
+                </tr>
+                <tr>
+                    <th width="30%">E-MAIL</th>
+                    <td width="2%">:</td>
+                    <td>{{user_data['Gmail']}}</td>
+                </tr>
+                <tr>
+                    <th width="30%">DOB</th>
+                    <td width="2%">:</td>
+                    <td>{{user_data['DOB']}}</td>
+                </tr>
+                <tr>
+                    <th width="30%">CONTACT NO.</th>
+                    <td width="2%">:</td>
+                    <td>{{user_data['Contact no.']}}</td>
+                </tr>
+                <tr>
+                    <th width="30%">BATCH:</th>
+                    <td width="2%">:</td>
+                    <td>{{user_data['Batch']}}</td>
+                </tr>
+            </table>
+        </div>
     </div>
-    <div class="card-body pt-0">
-    <table class="table table-bordered">
-    <tr>
-    <th width="30%">DEPT</th>
-    <td width="2%">:</td>
-    <td>Computer Engineering</td>
-    </tr>
-    <tr>
-    <th width="30%">E-MAIL</th>
-    <td width="2%">:</td>
-    <td>nabin@gmail.com</td>
-    </tr>
-    <tr>
-    <th width="30%">DOB</th>
-    <td width="2%">:</td>
-    <td>2055-02-13</td>
-    </tr>
-    <tr>
-    <th width="30%">CONTACT NO.</th>
-    <td width="2%">:</td>
-    <td>9860495157</td>
-    </tr>
-    <tr>
-    <th width="30%">BATCH:</th>
-    <td width="2%">:</td>
-    <td>2074/2017</td>
-    </tr>
-    </table>
-    </div>
-    </div>
-{% endblock %}
+    {% endblock %}

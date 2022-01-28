@@ -17,9 +17,8 @@
   ATTENDANCE SYSTEM
 </div>
 <div class="form">
-  <div class="button-box">
-    <div id="btn"></div>
-    <button type="button" class="toggle"> Login</button>
+  <div class="image-box">
+    <img src="\static\img\khwopalogo.png" class="image-box">
   </div>
   <div class="center">
     <form method="POST">
@@ -49,7 +48,12 @@
         <input type="submit" name="submit" value="Login" class="login">
       </div>
     </form>
-    {{msg}}
+    {% if 'Incorrect' in msg %}
+    <div class='mess' >
+      {{msg}}
+    </div>
+    {% endif %}
+    
   </div>
 </div>
 
