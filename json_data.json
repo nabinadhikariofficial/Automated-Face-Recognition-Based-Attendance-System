@@ -1,0 +1,1328 @@
+{
+    "teacher":{
+       "SS":{
+          "name":"Siddhant Sharma",
+          "subject":[
+             "Big Data"
+          ]
+       },
+       "PG":{
+          "name":"Punam Gwachha",
+          "subject":[
+             "Multimedia System"
+          ]
+       },
+       "AK":{
+          "name":"Abhijit Karna",
+          "subject":[
+             "Simulation and Modelling"
+          ]
+       },
+       "Pgit S":{
+          "name":"Prabesh Shrestha",
+          "subject":[
+             "Internet and Intranet"
+          ]
+       },
+       "RP":{
+          "name":"Rabindra Phonju",
+          "subject":[
+             "Engineering Professional Practise"
+          ]
+       },
+       "SP":{
+          "name":"Sajit Pyakurel",
+          "subject":[
+             "Information System"
+          ]
+       }
+    },
+    "student":{
+       "kce074bct001":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct002":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct003":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct004":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct005":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct006":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct007":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct008":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct009":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct010":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct011":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct012":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct013":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct014":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct015":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct016":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct017":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct018":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct019":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct020":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct021":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct022":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct023":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct024":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct025":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct026":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct027":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct028":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct029":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct030":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct031":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct032":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct033":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct034":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct035":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct036":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct037":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct038":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct039":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct040":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct041":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct042":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct043":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct044":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct045":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct046":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct047":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       },
+       "kce074bct048":{
+          "Information System":{
+             "Present":0,
+             "absent":0
+          },
+          "Multimedia System":{
+             "Present":0,
+             "absent":0
+          },
+          "Engineering Professional Practise":{
+             "Present":0,
+             "absent":0
+          },
+          "Big Data ":{
+             "Present":0,
+             "absent":0
+          },
+          "Internet and Intranet":{
+             "Present":0,
+             "absent":0
+          },
+          "Simulation and Modelling":{
+             "Present":0,
+             "absent":0
+          }
+       }
+    },
+    "attendance":{
+       "information system":{
+          "date":"",
+          "student_username":[
+             
+          ]
+       },
+       "big data":{
+          "date":"",
+          "student_username":[
+             
+          ]
+       },
+       "Simulation and modelling":{
+          "date":"",
+          "student_username":[
+             
+          ]
+       },
+       "engineering professional practise ":{
+          "date":"",
+          "student_username":[
+             
+          ]
+       },
+       "internet and intranet":{
+          "date":"",
+          "student_username":[
+             98qhhj
+          ]
+       },
+       "multimedia system":{
+          "date":"",
+          "student_username":[
+             
+          ]
+       }
+    }
+ }
