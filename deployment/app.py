@@ -81,10 +81,10 @@ def get_face_encodings(images):
 
 # database connection details below
 mydb = mysql.connector.connect(
-    host="sql6.freesqldatabase.com",
-    user="sql6467504",
-    passwd="DyECurrXmg",
-    database="sql6467504"
+    host="localhost",
+    user="root",
+    passwd="",
+    database="attendance"
 )
 
 # host address and port
@@ -116,6 +116,7 @@ def Index():
             session['loggedin'] = True
             session['id'] = account['id']
             session['username'] = account['username']
+            session['access']=account['access']
             # Redirect to profile page
             return redirect(url_for('Profile'))
         else:
@@ -136,71 +137,74 @@ def logout():
     session.pop('loggedin', None)
     session.pop('id', None)
     session.pop('username', None)
+    session.pop('access',None)
     # Redirect to login page
     return redirect(url_for('Index'))
 
 @app.route('/DetectFaces', methods=['GET', 'POST'])
 def DetectFaces():
     if 'loggedin' in session:
-        if request.method == 'POST':
-            file = request.files['file']
-            if (not file):
-                print("no file")
-            else:
-                message = "Image accepted"
-                filename = secure_filename("image_"+str(int(time.time()))+".jpg")
-                file.save(os.path.join(
-                    basedir, app.config['UPLOAD_FOLDER'], filename))
-                filename_full = basedir + "\\uploads\\" + filename
-                info = face_detection(filename_full)
-                context = {'message': message, 'image_info': info,
-                       'img_time': str(int(time.time()))}
-                return render_template('DetectFaces.html', context=context, len=len(info), zip=zip)
-        return render_template('DetectFaces.html', context={}, len=0, zip=zip)
+        if session['access']!='S':
+            if request.method == 'POST':
+                file = request.files['file']
+                if (not file):
+                    print("no file")
+                else:
+                    message = "Image accepted"
+                    filename = secure_filename("image_"+str(int(time.time()))+".jpg")
+                    file.save(os.path.join(
+                        basedir, app.config['UPLOAD_FOLDER'], filename))
+                    filename_full = basedir + "\\uploads\\" + filename
+                    info = face_detection(filename_full)
+                    context = {'message': message, 'image_info': info,
+                        'img_time': str(int(time.time()))}
+                    return render_template('DetectFaces.html', context=context, len=len(info), zip=zip)
+            return render_template('DetectFaces.html', context={}, len=0, zip=zip)
     return redirect(url_for('Index'))
 
 @app.route('/TakeAttendance', methods=['GET', 'POST'])
 def TakeAttendance():
     if 'loggedin' in session:
-        if request.method == 'POST':
-            file = request.files['file']
-            if 'file' not in request.files:
-                message = "Please Select a Image first"
-            elif file.filename == '':
-                message = "Please Select a Image first"
+        if session['access']!='S':
+            if request.method == 'POST':
+                file = request.files['file']
+                if 'file' not in request.files:
+                    message = "Please Select a Image first"
+                elif file.filename == '':
+                    message = "Please Select a Image first"
+                else:
+                    message = "Image accepted"
+                    filename = secure_filename("image_"+str(int(time.time()))+".jpg")
+                    file.save(os.path.join(
+                        basedir, app.config['UPLOAD_FOLDER'], filename))
+                    filename_full = basedir + "\\uploads\\" + filename
+                    info = face_detection(filename_full)
+                    result = get_face_encodings(len(info))
+                    present = []
+                    data = pd.read_csv(
+                        maindir+"\\Notebook_Scripts_Data\\crnAndName.csv")
+                    for i in data['CRN']:
+                        count = 0
+                        for j in result:
+                            if i in j:
+                                present.append('Present')
+                                count = 1
+                                break
+                            else:
+                                continue
+                        if count == 0:
+                            present.append("Absent")
+                    data["Status"] = present
+                    data_list = data.values.tolist()
+                    title = (data.columns.values.tolist())
+                    total = len(present)
+                    present_no = len(result)
+                    absent_no = total - present_no
+                context = {'message': message, 'image_info': info,
+                       'img_time': str(int(time.time()))}
+                return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no)
             else:
-                message = "Image accepted"
-                filename = secure_filename("image_"+str(int(time.time()))+".jpg")
-                file.save(os.path.join(
-                    basedir, app.config['UPLOAD_FOLDER'], filename))
-                filename_full = basedir + "\\uploads\\" + filename
-                info = face_detection(filename_full)
-                result = get_face_encodings(len(info))
-                present = []
-                data = pd.read_csv(
-                    maindir+"\\Notebook_Scripts_Data\\crnAndName.csv")
-                for i in data['CRN']:
-                    count = 0
-                    for j in result:
-                        if i in j:
-                            present.append('Present')
-                            count = 1
-                            break
-                        else:
-                            continue
-                    if count == 0:
-                        present.append("Absent")
-                data["Status"] = present
-                data_list = data.values.tolist()
-                title = (data.columns.values.tolist())
-                total = len(present)
-                present_no = len(result)
-                absent_no = total - present_no
-            context = {'message': message, 'image_info': info,
-                   'img_time': str(int(time.time()))}
-            return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no)
-        else:
-            return render_template('TakeAttendance.html', context={}, len=0)
+                return render_template('TakeAttendance.html', context={}, len=0)
     return redirect(url_for('Index'))
 
 global capture
@@ -211,11 +215,12 @@ capture = 0
 def CameraAttendance():
     global capture
     if 'loggedin' in session:
-        if request.method == 'POST':
-            if request.form.get("capture") == 'Capture':
-                global capture
-                capture = 1
-        return render_template('CameraAttendance.html')
+        if session['access']!='S':
+            if request.method == 'POST':
+                if request.form.get("capture") == 'Capture':
+                    global capture
+                    capture = 1
+            return render_template('CameraAttendance.html')
     return redirect(url_for('Index'))
 
 def live_video():
