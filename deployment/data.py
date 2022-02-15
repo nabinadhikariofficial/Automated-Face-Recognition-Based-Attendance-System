@@ -40,39 +40,39 @@ data={
 
     "attendance":
     {
-        "information system":[
+        "Information System":[
             {
                 "date": "",
                 "student_username":[]
             },
         ],
 
-        "big data":[
+        "Big Data":[
             {
                 "date":"",
                 "student_username":[]
             },
         ],
-        "Simulation and modelling":[
+        "Simulation and Modelling":[
             {
                 "date":"" ,
                 "student_username":[]
             },
         ],
-        "engineering professional practise ":[
+        "Engineering Professional Practise ":[
             {
                 "date": "",
                 "student_username":[]
             },
         ],
 
-        "internet and intranet":[
+        "Internet and Intranet":[
             {
                 "date":"" ,
                 "student_username":[]
             },
         ],
-        "multimedia system":[
+        "Multimedia System":[
             {
                 "date":"" ,
                 "student_username":[]
