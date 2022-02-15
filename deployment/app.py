@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import Normalizer
 import datetime
-
+import json
 
 UPLOAD_FOLDER = './uploads/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -166,6 +166,8 @@ def DetectFaces():
 def TakeAttendance():
     if 'loggedin' in session:
         if session['access']!='S':
+            attendance_data = json.load(open(maindir+"\\Notebook_Scripts_Data\\data.json"))
+            attendace_data_1=json.dumps(attendance_data)
             if request.method == 'POST':
                 file = request.files['file']
                 if 'file' not in request.files:
@@ -202,9 +204,9 @@ def TakeAttendance():
                     absent_no = total - present_no
                 context = {'message': message, 'image_info': info,
                        'img_time': str(int(time.time()))}
-                return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no)
+                return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no,login=session['username'])
             else:
-                return render_template('TakeAttendance.html', context={}, len=0)
+                return render_template('TakeAttendance.html', context={}, len=0,login=session['username'])
     return redirect(url_for('Index'))
 
 global capture

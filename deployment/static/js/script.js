@@ -1,12 +1,58 @@
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAYb_d5uOtVTCSW1zizJRZMRhyiVgMdafQ",
-  authDomain: "attendance-system-face-net.firebaseapp.com",
-  projectId: "attendance-system-face-net",
-  storageBucket: "attendance-system-face-net.appspot.com",
-  messagingSenderId: "584547886299",
-  appId: "1:584547886299:web:a9bed4fd534301d2e658fe",
+"use strict";
+
+const container = document.getElementById("take_container");
+const container_next = document.getElementById("take_container_next");
+const username = document.querySelector(".username");
+const subject_selected = document.getElementById("subject_select");
+const button = new Array();
+const name = username.textContent;
+const data = {
+  SS: {
+    name: "Siddhant Sharma",
+    subject: ["Big Data", "Information System"],
+  },
+  PG: {
+    name: "Punam Gwachha",
+    subject: ["Multimedia System"],
+  },
+  AK: {
+    name: "Abhijit Karna",
+    subject: ["Simulation and Modelling"],
+  },
+  PS: {
+    name: "Prabesh Shrestha",
+    subject: ["Internet and Intranet"],
+  },
+  RP: {
+    name: "Rabindra Phonju",
+    subject: ["Engineering Professional Practise"],
+  },
+  SP: {
+    name: "Sajit Pyakurel",
+    subject: ["Information System"],
+  },
+};
+const { subject } = data[name];
+
+const button_fun = function (sub) {
+  var button = document.createElement("button");
+  button.type = "button";
+  button.className = "btn-styled";
+  button.id = sub;
+  button.innerHTML = sub;
+  container.appendChild(button);
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+for (let index = 0; index < subject.length; index++) {
+  const element = subject[index];
+  button_fun(element);
+  button[index] = document.getElementById(element);
+}
+
+for (let index = 0; index < button.length; index++) {
+  button[index].addEventListener("click", function () {
+    subject_selected.innerHTML = button[index].innerHTML;
+    container_next.classList.remove("hidden");
+    container.classList.add("hidden");
+  });
+}

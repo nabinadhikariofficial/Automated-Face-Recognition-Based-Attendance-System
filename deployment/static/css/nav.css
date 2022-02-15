@@ -12,6 +12,10 @@ header {
   width: 100%;
   align-content: center;
 }
+.hidden {
+  display: none;
+}
+
 .logo-box {
   height: 50px;
   float: left;
