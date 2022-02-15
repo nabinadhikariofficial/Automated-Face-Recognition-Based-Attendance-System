@@ -111,9 +111,9 @@ i=1
 
 while i < 49:
     if i <10:
-        roll_no= "kce074bct00"+str(i)
+        roll_no= "KCE074BCT00"+str(i)
     else:
-        roll_no="kce074bct0"+str(i)
+        roll_no="KCE074BCT0"+str(i)
     
     data["student"][roll_no]={"Information System":{
         "Present":0,
