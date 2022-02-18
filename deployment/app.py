@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import Normalizer
 import datetime
-
+import json
 
 UPLOAD_FOLDER = './uploads/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -95,7 +95,6 @@ port_add = 5000
 cursor = mydb.cursor(dictionary=True)
 
 
-
 @app.route('/', methods=['GET', 'POST'])
 def Index():
     msg = ''
@@ -105,7 +104,7 @@ def Index():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
-        username=username.upper()
+        username = username.upper()
         password = hashlib.sha256(password.encode()).hexdigest()
         cursor.execute(
             'SELECT * FROM accounts WHERE username = %s AND password = %s', (username, password,))
@@ -116,56 +115,65 @@ def Index():
             session['loggedin'] = True
             session['id'] = account['id']
             session['username'] = account['username']
-            session['access']=account['access']
+            session['access'] = account['access']
             # Redirect to profile page
             return redirect(url_for('Profile'))
         else:
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect Username or Password'
-    return render_template('login.html',msg=msg)
+    return render_template('login.html', msg=msg)
+
 
 @app.route('/Profile', methods=['GET', 'POST'])
 def Profile():
     if 'loggedin' in session:
-        user_data = pd.read_csv(maindir+"\\Notebook_Scripts_Data\\studentdetails.csv", index_col=0).T[session['username']].to_dict()
-        return render_template('profile.html',user_data=user_data)
+        user_data = pd.read_csv(maindir+"\\Notebook_Scripts_Data\\studentdetails.csv",
+                                index_col=0).T[session['username']].to_dict()
+        return render_template('profile.html', user_data=user_data)
     return redirect(url_for('Index'))
 # webpage where user can provide image
+
 
 @app.route('/logout')
 def logout():
     session.pop('loggedin', None)
     session.pop('id', None)
     session.pop('username', None)
-    session.pop('access',None)
+    session.pop('access', None)
     # Redirect to login page
     return redirect(url_for('Index'))
+
 
 @app.route('/DetectFaces', methods=['GET', 'POST'])
 def DetectFaces():
     if 'loggedin' in session:
-        if session['access']!='S':
+        if session['access'] != 'S':
             if request.method == 'POST':
                 file = request.files['file']
                 if (not file):
                     print("no file")
                 else:
                     message = "Image accepted"
-                    filename = secure_filename("image_"+str(int(time.time()))+".jpg")
+                    filename = secure_filename(
+                        "image_"+str(int(time.time()))+".jpg")
                     file.save(os.path.join(
                         basedir, app.config['UPLOAD_FOLDER'], filename))
                     filename_full = basedir + "\\uploads\\" + filename
                     info = face_detection(filename_full)
                     context = {'message': message, 'image_info': info,
-                        'img_time': str(int(time.time()))}
+                               'img_time': str(int(time.time()))}
                     return render_template('DetectFaces.html', context=context, len=len(info), zip=zip)
             return render_template('DetectFaces.html', context={}, len=0, zip=zip)
     return redirect(url_for('Index'))
 
+
 @app.route('/TakeAttendance', methods=['GET', 'POST'])
 def TakeAttendance():
     if 'loggedin' in session:
-        if session['access']!='S':
+        if session['access'] != 'S':
+            attendance_data = json.load(
+                open(maindir+"\\Notebook_Scripts_Data\\data.json"))
+            attendace_data_1 = json.dumps(attendance_data)
             if request.method == 'POST':
                 file = request.files['file']
                 if 'file' not in request.files:
@@ -174,7 +182,8 @@ def TakeAttendance():
                     message = "Please Select a Image first"
                 else:
                     message = "Image accepted"
-                    filename = secure_filename("image_"+str(int(time.time()))+".jpg")
+                    filename = secure_filename(
+                        "image_"+str(int(time.time()))+".jpg")
                     file.save(os.path.join(
                         basedir, app.config['UPLOAD_FOLDER'], filename))
                     filename_full = basedir + "\\uploads\\" + filename
@@ -201,11 +210,12 @@ def TakeAttendance():
                     present_no = len(result)
                     absent_no = total - present_no
                 context = {'message': message, 'image_info': info,
-                       'img_time': str(int(time.time()))}
-                return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no)
+                           'img_time': str(int(time.time()))}
+                return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no, login=session['username'])
             else:
-                return render_template('TakeAttendance.html', context={}, len=0)
+                return render_template('TakeAttendance.html', context={}, len=0, login=session['username'])
     return redirect(url_for('Index'))
+
 
 global capture
 capture = 0
@@ -215,13 +225,14 @@ capture = 0
 def CameraAttendance():
     global capture
     if 'loggedin' in session:
-        if session['access']!='S':
+        if session['access'] != 'S':
             if request.method == 'POST':
                 if request.form.get("capture") == 'Capture':
                     global capture
                     capture = 1
             return render_template('CameraAttendance.html')
     return redirect(url_for('Index'))
+
 
 def live_video():
     global capture

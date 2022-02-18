@@ -1,0 +1,26 @@
+{
+  "SS": {
+    "name": "Siddhant Sharma",
+    "subject": ["Big Data", "Information System"]
+  },
+  "PG": {
+    "name": "Punam Gwachha",
+    "subject": ["Multimedia System"]
+  },
+  "AK": {
+    "name": "Abhijit Karna",
+    "subject": ["Simulation and Modelling"]
+  },
+  "PS": {
+    "name": "Prabesh Shrestha",
+    "subject": ["Internet and Intranet"]
+  },
+  "RP": {
+    "name": "Rabindra Phonju",
+    "subject": ["Engineering Professional Practise"]
+  },
+  "SP": {
+    "name": "Sajit Pyakurel",
+    "subject": ["Information System"]
+  }
+}
