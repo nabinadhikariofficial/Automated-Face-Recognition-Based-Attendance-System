@@ -51,7 +51,7 @@ for (let index = 0; index < subject.length; index++) {
 
 for (let index = 0; index < button.length; index++) {
   button[index].addEventListener("click", function () {
-    subject_selected.innerHTML = button[index].innerHTML;
+    subject_selected.value = button[index].innerHTML;
     container_next.classList.remove("hidden");
     container.classList.add("hidden");
   });

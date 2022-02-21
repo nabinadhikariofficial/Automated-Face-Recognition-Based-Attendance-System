@@ -7,13 +7,13 @@ import os
 from werkzeug.utils import secure_filename
 import cv2
 import time
+from datetime import datetime
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 import pickle
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import Normalizer
-import datetime
 import json
 
 UPLOAD_FOLDER = './uploads/'
@@ -162,12 +162,29 @@ def DetectFaces():
             return render_template('DetectFaces.html', context={}, len=0, zip=zip)
     return redirect(url_for('Index'))
 
+def update_attendance(data):
+    attendance_data = json.load(open(maindir+"\\Notebook_Scripts_Data\\data.json"))
+    subject_selected=request.form["subject"]
+    p_list=[]
+    a_list=[]
+    for data in data:
+        if data[2]=='Present' :
+            p_list.append(data[0])
+            attendance_data['student'][data[0]][subject_selected]['Present']+=1
+        else:
+            a_list.append(data[0])
+        attendance_data['student'][data[0]][subject_selected]['total']+=1
+    temp={'date':datetime.now().strftime("%Y/%m/%d %H:%M:%S"),"present_list":p_list,"absent_list":a_list}
+    attendance_data['attendance'][subject_selected].append(temp)
+    with open(maindir+"\\Notebook_Scripts_Data\\data.json","w" )as f:
+        f.write(json.dumps(attendance_data))
+    return
+
+
 @app.route('/TakeAttendance', methods=['GET', 'POST'])
 def TakeAttendance():
     if 'loggedin' in session:
         if session['access']!='S':
-            attendance_data = json.load(open(maindir+"\\Notebook_Scripts_Data\\data.json"))
-            attendace_data_1=json.dumps(attendance_data)
             if request.method == 'POST':
                 file = request.files['file']
                 if 'file' not in request.files:
@@ -202,6 +219,7 @@ def TakeAttendance():
                     total = len(present)
                     present_no = len(result)
                     absent_no = total - present_no
+                    update_attendance(data_list)
                 context = {'message': message, 'image_info': info,
                        'img_time': str(int(time.time()))}
                 return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no,login=session['username'])
@@ -282,7 +300,8 @@ def capture_feed():
 @app.route('/AttendanceDetails', methods=['GET', 'POST'])
 def AttendanceDetails():
     if 'loggedin' in session:
-        return render_template('AttendanceDetails.html')
+        attendance_data = json.load(open(maindir+"\\Notebook_Scripts_Data\\data.json"))
+        return render_template('AttendanceDetails.html',attendance_data=attendance_data)
     return redirect(url_for('Index'))
 
 
