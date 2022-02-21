@@ -2,7 +2,6 @@
 {% block title %}Image Detection{% endblock %}
 {% block content %}
 <p class="hidden username">{{login}}</p>
-<p class="hidden subject" id="subject_select"></p>
 <div class="container" id="take_container">
   <div class="upload">
     <h3 class="font">SUBJECT SELECTION</h3>
@@ -22,9 +21,10 @@
   </div>
   <div class="upload">
     <form method="POST" enctype="multipart/form-data">
+      <input class="hidden subject" type="text" name="subject" id="subject_select">
       <button type="button" class="btn btn-outline-primary js-btn" name="btn-upload"><input type="file" name="file"
           class="js-file"></button>
-      <input type="submit" value="Upload" class="btn btn-primary  js-upload">
+      <input type="submit" value="Upload" class="btn btn-primary  js-upload" id="submit_button">
       <div class="upload">
         <h4 class="font">{{context.message}}</h4>
       </div>
