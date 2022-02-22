@@ -300,8 +300,9 @@ def capture_feed():
 @app.route('/AttendanceDetails', methods=['GET', 'POST'])
 def AttendanceDetails():
     if 'loggedin' in session:
+        user_data = pd.read_csv(maindir+"\\Notebook_Scripts_Data\\studentdetails.csv", index_col=0).T.to_dict()
         attendance_data = json.load(open(maindir+"\\Notebook_Scripts_Data\\data.json"))
-        return render_template('AttendanceDetails.html',attendance_data=attendance_data)
+        return render_template('AttendanceDetails.html',attendance_data=attendance_data, s_access = session['access'], username = session['username'] , user_data = user_data  )
     return redirect(url_for('Index'))
 
 

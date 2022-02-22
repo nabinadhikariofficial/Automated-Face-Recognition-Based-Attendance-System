@@ -1,154 +1,121 @@
 {% extends "layout.html" %}
 {% block title %}Image Detection{% endblock %}
 {% block content %}
+{% if s_access=='S' %}
 <div class="pos">
     <div class="row" style="justify-content: center">
-        <div class="card col-md-3 mt-100 cardinfo">
+        {% for i in attendance_data['teacher'] %}
+        {% if attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']!=0 %}
+        {% if ((attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])>0.8) %}
+        <div class="green card col-md-3 mt-100 cardinfo">
+            <a class="link" href="">
+                <div class="card-content">
+                    <div class="card-body p-0 cardbody">
+                        <div class="profile"> <img src="\static\img\img_avatar.png"> </div>
+                        <div class="card-title">
+                            <h3 class="bold">{{attendance_data['teacher'][i]['subject'][0]}}</h3>
+                            <h3>({{attendance_data['teacher'][i]['name']}})</h3>
+                        </div>
+                        <hr>
+                        <div class="percent">
+                            <h6>Present Percentage:</h6>
+                            <h2>&ensp;{{(attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])*100}}%</h2> 
+                        </div>
+                        <div class="card-subtitle">
+                            <h4>No. of Days:</h4>
+                            <h3>&emsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']}}</h3>
+                        </div>
+                        <div class="card-subtitle">
+                            <h4>Present Days:</h4>
+                            <h3>&ensp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}</h3>
+                        </div>
+                        <div class="card-subtitle">
+                            <h4>Absent Days:</h4>
+                            <h3>&ensp;&nbsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']-attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% else %}
+    <div class="red card col-md-3 mt-100 cardinfo">
+        <a class="link" href="">
             <div class="card-content">
                 <div class="card-body p-0 cardbody">
                     <div class="profile"> <img src="\static\img\img_avatar.png"> </div>
                     <div class="card-title">
-                        <h3>Big Data (Siddhant Sir)</h3>
+                        <h3 class="bold">{{attendance_data['teacher'][i]['subject'][0]}}</h3>
+                        <h3>({{attendance_data['teacher'][i]['name']}})</h3>
                     </div>
                     <hr>
+                    <div class="percent">
+                        <h6>Present Percentage:</h6>
+                        <h2>&ensp;{{(attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])*100}}%</h2> 
+                    </div>
                     <div class="card-subtitle">
                         <h4>No. of Days:</h4>
-                        <p>10</p>
+                        <h3>&emsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']}}</h3>
                     </div>
                     <div class="card-subtitle">
                         <h4>Present Days:</h4>
-                        <p>10</p>
+                        <h3>&ensp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}</h3>
                     </div>
                     <div class="card-subtitle">
-                        <h4>Abscent Days:</h4>
-                        <p>10</p>
+                        <h4>Absent Days:</h4>
+                        <h3>&ensp;&nbsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']-attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}</h3>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card col-md-3 mt-100 cardinfo">
-            <div class="card-content">
-                <div class="card-body p-0 cardbody">
-                    <div class="profile"> <img src="\static\img\img_avatar.png"> </div>
-                    <div class="card-title">
-                        <h3>Big Data (Siddhant Sir)</h3>
-                    </div>
-                    <hr>
-                    <div class="card-subtitle">
-                        <h4>No. of Days:</h4>
-                        <p>10</p>
-                    </div>
-                    <div class="card-subtitle">
-                        <h4>Present Days:</h4>
-                        <p>10</p>
-                    </div>
-                    <div class="card-subtitle">
-                        <h4>Abscent Days:</h4>
-                        <p>10</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card col-md-3 mt-100 cardinfo">
-            <div class="card-content">
-                <div class="card-body p-0 cardbody">
-                    <div class="profile"> <img src="\static\img\img_avatar.png"> </div>
-                    <div class="card-title">
-                        <h3>Big Data (Siddhant Sir)</h3>
-                    </div>
-                    <hr>
-                    <div class="card-subtitle">
-                        <h4>No. of Days:</h4>
-                        <p>10</p>
-                    </div>
-                    <div class="card-subtitle">
-                        <h4>Present Days:</h4>
-                        <p>10</p>
-                    </div>
-                    <div class="card-subtitle">
-                        <h4>Abscent Days:</h4>
-                        <p>10</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </a>
     </div>
+    {% endif %}
 
-    <div class="pos">
-        <div class="row" style="justify-content: center">
-            <div class="card col-md-3 mt-100 cardinfo">
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if s_access=='T' %}
+<div class="pos">
+    <div class="row" style="justify-content: center">
+        {% for i in attendance_data['student'] %}
+    {% if attendance_data['student'][i][attendance_data['teacher'][username]['subject'][0]]['total']!=0 %}
+        {% if ((attendance_data['student'][i][attendance_data['teacher'][username]['subject'][0]]['Present']/attendance_data['student'][i][attendance_data['teacher'][username]['subject'][0]]['total'])>0.8) %}
+    
+        <div class="cardl card col-md-3 mt-100 green">
+            <a class='link' href="">
                 <div class="card-content">
                     <div class="card-body p-0 cardbody">
-                        <div class="profile"> <img src="\static\img\img_avatar.png"> </div>
+                        <div class="profile"> <img src="{{user_data[i]['Image']}}"> </div>
                         <div class="card-title">
-                            <h3>Big Data (Siddhant Sir)</h3>
-                        </div>
-                        <hr>
-                        <div class="card-subtitle">
-                            <h4>No. of Days:</h4>
-                            <p>10</p>
-                        </div>
-                        <div class="card-subtitle">
-                            <h4>Present Days:</h4>
-                            <p>10</p>
-                        </div>
-                        <div class="card-subtitle">
-                            <h4>Abscent Days:</h4>
-                            <p>10</p>
+                            <h3>{{i}}</h3>
+                            <h6>{{user_data[i]["Full Name"]}}</h6>
+                            <h6>{{user_data[i]["Contact no."]}}</h6>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card col-md-3 mt-100 cardinfo">
-                <div class="card-content">
-                    <div class="card-body p-0 cardbody">
-                        <div class="profile"> <img src="\static\img\img_avatar.png"> </div>
-                        <div class="card-title">
-                            <h3>Big Data (Siddhant Sir)</h3>
-                        </div>
-                        <hr>
-                        <div class="card-subtitle">
-                            <h4>No. of Days:</h4>
-                            <p>10</p>
-                        </div>
-                        <div class="card-subtitle">
-                            <h4>Present Days:</h4>
-                            <p>10</p>
-                        </div>
-                        <div class="card-subtitle">
-                            <h4>Abscent Days:</h4>
-                            <p>10</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card col-md-3 mt-100 cardinfo">
-                <div class="card-content">
-                    <div class="card-body p-0 cardbody">
-                        <div class="profile"> <img src="\static\img\img_avatar.png"> </div>
-                        <div class="card-title">
-                            <h3>Big Data (Siddhant Sir)</h3>
-                        </div>
-                        <hr>
-                        <div class="card-subtitle">
-                            <h4>No. of Days:</h4>
-                            <p>10</p>
-                        </div>
-                        <div class="card-subtitle">
-                            <h4>Present Days:</h4>
-                            <p>10</p>
-                        </div>
-                        <div class="card-subtitle">
-                            <h4>Abscent Days:</h4>
-                            <p>10</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
+    {% else %}
+    <div class="cardl card col-md-3 mt-100 red">
+        <a class='link' href="">
+            <div class="card-content">
+                <div class="card-body p-0 cardbody">
+                    <div class="profile"> <img src="{{user_data[i]['Image']}}"> </div>
+                    <div class="card-title">
+                        <h3>{{i}}</h3>
+                        <h6>{{user_data[i]["Full Name"]}}</h6>
+                        <h6>{{user_data[i]["Contact no."]}}</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
 
+</div>
+{% endif %}
 
-
-        <!-- only for test -->
-        {{attendance_data}}
         {% endblock %}
