@@ -1,5 +1,4 @@
 from retinaface import RetinaFace
-from matplotlib import pyplot as plt
 from flask import Flask, request, render_template, session, redirect, url_for, Response
 import hashlib
 import mysql.connector
@@ -28,6 +27,7 @@ app.secret_key = 'key'
 
 
 def face_detection(image_loc):
+    print("Face detection Started....")
     faces = RetinaFace.detect_faces(img_path=image_loc)
     image = cv2.imread(image_loc)
     for face in faces.items():
@@ -40,6 +40,7 @@ def face_detection(image_loc):
             str(face[0]) + '_'+str(int(time.time())) + '.jpg'
         cv2.imwrite(location1, crop)
         cv2.imwrite(location2, crop)
+    print("Face have been detected....")
     return faces
 
 
@@ -51,32 +52,50 @@ def process_image(image_path):
     """
     Takes an image file path and turns it into a Tensor.
     """
+    print("Image processing stared....")
     image = tf.io.read_file(image_path)
     image = tf.image.decode_jpeg(image, channels=3)
     image = tf.image.convert_image_dtype(image, tf.float32)
     image = tf.image.resize(image, size=[IMG_SIZE, IMG_SIZE])
     image = tf.expand_dims(image, axis=0)
+    print("Image processing finished....")
     return image
 
 
 def get_face_encodings(images):
+    print("loading models....")
     model = load_model(
         maindir+"\\Notebook_Scripts_Data\\model\\facenet_keras.h5")
     model_svc = pickle.load(
-        open(maindir+'\\Notebook_Scripts_Data\\model\\20210831-184738_svc.pk', 'rb'))
+        open(maindir+'\\Notebook_Scripts_Data\\model\\20220223-210250_svc.pk', 'rb'))
+    result_final=[]
+    pred_final=[]
     for image in range(images):
         image_path = basedir + "\\static\\img\\faces\\instant\\face_" + \
             str(image+1) + ".jpg"
         image_data = process_image(image_path)
+        print("128 embedding predict....")
         image_emb = model.predict(image_data)
+        print("128 embedding done....")
         in_encode = Normalizer(norm='l2')
         image_emb_nom = in_encode.transform(image_emb)
         if image == 0:
             temp = image_emb_nom
         else:
             temp = np.vstack((temp, image_emb_nom))
-    result = model_svc.predict(temp)
-    return result
+    for out in temp:
+        print("Checking result probabilty....")
+        pred_prob=model_svc.predict_proba(out.reshape(1,-1))*100
+        if (pred_prob.max()>10):
+            result = model_svc.predict(out.reshape(1,-1))
+            result_final.append(result[0])
+        else:
+            result_final.append('Unknown')
+        pred_final.append(pred_prob.max())
+    print("result calcultion finished....")
+    print(result_final)
+    print(pred_final)
+    return result_final
 
 
 # database connection details below
@@ -197,6 +216,7 @@ def TakeAttendance():
                     file.save(os.path.join(
                         basedir, app.config['UPLOAD_FOLDER'], filename))
                     filename_full = basedir + "\\uploads\\" + filename
+                    print("File have been accepted.....")
                     info = face_detection(filename_full)
                     result = get_face_encodings(len(info))
                     present = []
@@ -217,8 +237,9 @@ def TakeAttendance():
                     data_list = data.values.tolist()
                     title = (data.columns.values.tolist())
                     total = len(present)
-                    present_no = len(result)
+                    present_no = len(result)-result.count('Unknown')
                     absent_no = total - present_no
+                    print("updating attendance.....")
                     update_attendance(data_list)
                 context = {'message': message, 'image_info': info,
                        'img_time': str(int(time.time()))}
