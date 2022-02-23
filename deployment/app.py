@@ -302,9 +302,44 @@ def AttendanceDetails():
     if 'loggedin' in session:
         user_data = pd.read_csv(maindir+"\\Notebook_Scripts_Data\\studentdetails.csv", index_col=0).T.to_dict()
         attendance_data = json.load(open(maindir+"\\Notebook_Scripts_Data\\data.json"))
-        return render_template('AttendanceDetails.html',attendance_data=attendance_data, s_access = session['access'], username = session['username'] , user_data = user_data  )
+        show = False
+        if request.method == 'POST':
+            global subject_selected_detail
+            subject_selected_detail = request.form["subject"]
+            show=True
+            return render_template('AttendanceDetails.html',attendance_data=attendance_data, s_access = session['access'], username = session['username'] , user_data = user_data ,subject_selected=subject_selected_detail,show=show)
+        else:
+            return render_template('AttendanceDetails.html',attendance_data=attendance_data, s_access = session['access'], username = session['username'] , user_data = user_data,show=show)
     return redirect(url_for('Index'))
 
+def formatter(data_required):
+    attendance_data = json.load(open(maindir+"\\Notebook_Scripts_Data\\data.json"))
+    if data_required[0:3]=='KCE':
+        data=[['Date','Status']]
+        for value in attendance_data['attendance'][subject_selected_detail]:
+            if (data_required in value['absent_list']):
+                temp=[value['date'],'Absent']
+            else:
+                temp=[value['date'],'Present']
+            data.append(temp)
+    else:
+        data=[['Date','Status']]
+        for value in attendance_data['attendance'][data_required]:
+            if (session['username'] in value['absent_list']):
+                temp=[value['date'],'Absent']
+            else:
+                temp=[value['date'],'Present']
+            data.append(temp)
+    return data
+
+
+@app.route('/info',methods=['GET','POST'])
+def info():
+    if 'loggedin' in session:
+        data_required=request.args.get('type')
+        data=formatter(data_required)
+        return render_template('info.html',data=data)
+    return redirect(url_for('Index'))
 
 # Running the app
 if __name__ == "__main__":
