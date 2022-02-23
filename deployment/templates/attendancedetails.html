@@ -78,7 +78,7 @@
 {% if s_access=='T' %}
 <div class="pos">
     <div class="row" style="justify-content: center">
-        {% for i in attendance_data['student'] %}
+    {% for i in attendance_data['student'] %}
     {% if attendance_data['student'][i][attendance_data['teacher'][username]['subject'][0]]['total']!=0 %}
         {% if ((attendance_data['student'][i][attendance_data['teacher'][username]['subject'][0]]['Present']/attendance_data['student'][i][attendance_data['teacher'][username]['subject'][0]]['total'])>0.8) %}
     
