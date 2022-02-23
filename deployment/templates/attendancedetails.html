@@ -1,14 +1,15 @@
 {% extends "layout.html" %}
 {% block title %}Image Detection{% endblock %}
 {% block content %}
+
 {% if s_access=='S' %}
 <div class="pos">
     <div class="row" style="justify-content: center">
         {% for i in attendance_data['teacher'] %}
         {% if attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']!=0 %}
-        {% if ((attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])>0.8) %}
+        {%if((attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])>0.8)%}
         <div class="green card col-md-3 mt-100 cardinfo">
-            <a class="link" href="">
+            <a class="link" href="{{url_for('info',type=attendance_data['teacher'][i]['subject'][0])}}">
                 <div class="card-content">
                     <div class="card-body p-0 cardbody">
                         <div class="profile"> <img src="\static\img\img_avatar.png"> </div>
@@ -19,74 +20,98 @@
                         <hr>
                         <div class="percent">
                             <h6>Present Percentage:</h6>
-                            <h2>&ensp;{{(attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])*100}}%</h2> 
+                            <h2>&ensp;{{(attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])*100}}%
+                            </h2>
                         </div>
                         <div class="card-subtitle">
                             <h4>No. of Days:</h4>
-                            <h3>&emsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']}}</h3>
+                            <h3>&emsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']}}
+                            </h3>
                         </div>
                         <div class="card-subtitle">
                             <h4>Present Days:</h4>
-                            <h3>&ensp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}</h3>
+                            <h3>&ensp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}
+                            </h3>
                         </div>
                         <div class="card-subtitle">
                             <h4>Absent Days:</h4>
-                            <h3>&ensp;&nbsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']-attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}</h3>
+                            <h3>&ensp;&nbsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']-attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}
+                            </h3>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
-    {% else %}
-    <div class="red card col-md-3 mt-100 cardinfo">
-        <a class="link" href="">
-            <div class="card-content">
-                <div class="card-body p-0 cardbody">
-                    <div class="profile"> <img src="\static\img\img_avatar.png"> </div>
-                    <div class="card-title">
-                        <h3 class="bold">{{attendance_data['teacher'][i]['subject'][0]}}</h3>
-                        <h3>({{attendance_data['teacher'][i]['name']}})</h3>
-                    </div>
-                    <hr>
-                    <div class="percent">
-                        <h6>Present Percentage:</h6>
-                        <h2>&ensp;{{(attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])*100}}%</h2> 
-                    </div>
-                    <div class="card-subtitle">
-                        <h4>No. of Days:</h4>
-                        <h3>&emsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']}}</h3>
-                    </div>
-                    <div class="card-subtitle">
-                        <h4>Present Days:</h4>
-                        <h3>&ensp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}</h3>
-                    </div>
-                    <div class="card-subtitle">
-                        <h4>Absent Days:</h4>
-                        <h3>&ensp;&nbsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']-attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}</h3>
+        {% else %}
+        <div class="red card col-md-3 mt-100 cardinfo">
+            <a class="link" href="{{url_for('info',type=attendance_data['teacher'][i]['subject'][0])}}">
+                <div class="card-content">
+                    <div class="card-body p-0 cardbody">
+                        <div class="profile"> <img src="\static\img\img_avatar.png"> </div>
+                        <div class="card-title">
+                            <h3 class="bold">{{attendance_data['teacher'][i]['subject'][0]}}</h3>
+                            <h3>({{attendance_data['teacher'][i]['name']}})</h3>
+                        </div>
+                        <hr>
+                        <div class="percent">
+                            <h6>Present Percentage:</h6>
+                            <h2>&ensp;{{(attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])*100}}%
+                            </h2>
+                        </div>
+                        <div class="card-subtitle">
+                            <h4>No. of Days:</h4>
+                            <h3>&emsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']}}
+                            </h3>
+                        </div>
+                        <div class="card-subtitle">
+                            <h4>Present Days:</h4>
+                            <h3>&ensp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}
+                            </h3>
+                        </div>
+                        <div class="card-subtitle">
+                            <h4>Absent Days:</h4>
+                            <h3>&ensp;&nbsp;{{attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total']-attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']}}
+                            </h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    </div>
-    {% endif %}
+            </a>
+        </div>
+        {% endif %}
 
-    {% endif %}
-    {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </div>
 </div>
 {% endif %}
 
 {% if s_access=='T' %}
+<p class="hidden username">{{username}}</p>
+<div class="container sub" id="take_container">
+    <div class="upload">
+        <h3 class="font">SUBJECT SELECTION</h3>
+    </div>
+    <div class="upload">
+        <p class="font">Please select your subject for viewing attendance detail</p>
+    </div>
+    <form method="POST" class="" id="form_post">
+        <input class="hidden subject" type="text" name="subject" id="subject_select">
+    </form>
+</div>
+<script type="text/javascript" src="{{url_for('static', filename='js/script_teacher.js')}}"></script>
+{% if show==True %}
 <div class="pos">
     <div class="row" style="justify-content: center">
-    {% for i in attendance_data['student'] %}
-    {% if attendance_data['student'][i][attendance_data['teacher'][username]['subject'][0]]['total']!=0 %}
-        {% if ((attendance_data['student'][i][attendance_data['teacher'][username]['subject'][0]]['Present']/attendance_data['student'][i][attendance_data['teacher'][username]['subject'][0]]['total'])>0.8) %}
-    
+        {% for i in attendance_data['student'] %}
+        {% if (attendance_data['student'][i][subject_selected]['total']!=0) %}
+        {%if((attendance_data['student'][i][subject_selected]['Present']/attendance_data['student'][i][subject_selected]['total'])>0.8)%}
         <div class="cardl card col-md-3 mt-100 green">
-            <a class='link' href="">
+            <a class='link' href="{{url_for('info',type=i)}}">
                 <div class="card-content">
                     <div class="card-body p-0 cardbody">
-                        <div class="profile"> <img src="{{user_data[i]['Image']}}"> </div>
+                        <div class="profile"> <img src="{{user_data[i]['Image']}}"
+                                onerror="this.src='/static/img/img_avatar.png'">
+                        </div>
                         <div class="card-title">
                             <h3>{{i}}</h3>
                             <h6>{{user_data[i]["Full Name"]}}</h6>
@@ -96,26 +121,30 @@
                 </div>
             </a>
         </div>
-    {% else %}
-    <div class="cardl card col-md-3 mt-100 red">
-        <a class='link' href="">
-            <div class="card-content">
-                <div class="card-body p-0 cardbody">
-                    <div class="profile"> <img src="{{user_data[i]['Image']}}"> </div>
-                    <div class="card-title">
-                        <h3>{{i}}</h3>
-                        <h6>{{user_data[i]["Full Name"]}}</h6>
-                        <h6>{{user_data[i]["Contact no."]}}</h6>
+        {% else %}
+        <div class="cardl card col-md-3 mt-100 red">
+            <a class='link' href="{{url_for('info',type=i)}}">
+                <div class="card-content">
+                    <div class="card-body p-0 cardbody">
+                        <div class="profile"> <img src="{{user_data[i]['Image']}}"
+                                onerror="this.src='/static/img/img_avatar.png'">
+                        </div>
+                        <div class="card-title">
+                            <h3>{{i}}</h3>
+                            <h6>{{user_data[i]["Full Name"]}}</h6>
+                            <h6>{{user_data[i]["Contact no."]}}</h6>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+
     </div>
     {% endif %}
-    {% endif %}
-    {% endfor %}
-
 </div>
 {% endif %}
 
-        {% endblock %}
+{% endblock %}
