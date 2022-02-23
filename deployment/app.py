@@ -359,7 +359,7 @@ def info():
     if 'loggedin' in session:
         data_required=request.args.get('type')
         data=formatter(data_required)
-        return render_template('info.html',data=data)
+        return render_template('info.html',data=data,zip=zip,len=len)
     return redirect(url_for('Index'))
 
 # Running the app

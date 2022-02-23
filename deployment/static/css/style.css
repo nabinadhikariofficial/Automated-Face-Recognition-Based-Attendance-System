@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   font-family: Calibri;
+  box-sizing: inherit;
 }
 
 .form {
@@ -475,4 +476,35 @@ label > input[type="checkbox"]:checked + * {
   height: fit-content!important;
   width: fit-content!important;
   box-shadow: 0 10px 20px rgba(0, 0, 0, .2)
+}
+
+.subdetail{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.3);
+  background-color: white;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(0.5px);
+  z-index: 5;
+}
+
+.btnalign{
+  position: absolute;
+  left: 95%;
+  width: fit-content;
+  height: fit-content;
 }
