@@ -37,7 +37,7 @@ const { subject } = data[name];
 const button_fun = function (sub) {
   var button = document.createElement("button");
   button.type = "button";
-  button.className = "btn-styled";
+  button.className = "btn btn-primary";
   button.id = sub;
   button.innerHTML = sub;
   container.appendChild(button);
