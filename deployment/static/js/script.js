@@ -5,7 +5,7 @@ const container_next = document.getElementById("take_container_next");
 const username = document.querySelector(".username");
 const subject_selected = document.getElementById("subject_select");
 const button = new Array();
-const name = username.textContent;
+const name_user = username.textContent;
 const data = {
   SS: {
     name: "Siddhant Sharma",
@@ -32,12 +32,16 @@ const data = {
     subject: ["Information System"],
   },
 };
-const { subject } = data[name];
+const { subject } = data[name_user];
 
 const button_fun = function (sub) {
   var button = document.createElement("button");
   button.type = "button";
+<<<<<<< HEAD
   button.className = "btn btn-primary";
+=======
+  button.className = "btn btn-primary btn-lg subbutton";
+>>>>>>> 7143294b118a2b8ec6ed5c793a15161578890f65
   button.id = sub;
   button.innerHTML = sub;
   container.appendChild(button);
@@ -51,7 +55,7 @@ for (let index = 0; index < subject.length; index++) {
 
 for (let index = 0; index < button.length; index++) {
   button[index].addEventListener("click", function () {
-    subject_selected.innerHTML = button[index].innerHTML;
+    subject_selected.value = button[index].innerHTML;
     container_next.classList.remove("hidden");
     container.classList.add("hidden");
   });

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}Image Detection{% endblock %}
+{% block content %}
+{% set count = 1 %}
+<div class="subdetail">
+    <div class="btnalign">
+        <a href="{{url_for('AttendanceDetails')}}"><button type="button" class="btn-close"
+                aria-label="Close"></button></a>
+    </div>
+
+    <table class="table-content" style="width: 450px;">
+        {% for (i,count) in zip(data, range(len(data))) %}
+        <tr>
+
+            {% if "Date" in i[0] %}
+            <th style="color: #2691d9;">S.No</th>
+            <th style="color: #2691d9;">{{i[0]}}</th>
+            {% endif %}
+            {% if "Present" in i[1] %}
+            <th style="color: green;">{{count}}</th>
+            <th style="color: green;">{{i[0]}}</th>
+            <th style="color: green;">{{i[1]}}</th>
+            {% elif "Absent" in i[1] %}
+            <th style="color: red;">{{count}}</th>
+            <th style="color: red;">{{i[0]}}</th>
+            <th style="color: red;">{{i[1]}}</th>
+            {% else %}
+            <th style="color: #2691d9;">{{i[1]}}</th>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>
+<div class="overlay"></div>
+{% endblock %}
