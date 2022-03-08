@@ -6,10 +6,15 @@ import time
 from datetime import datetime
 basedir = os.path.abspath(os.path.dirname(__file__))
 maindir = basedir[:-11]
-username="NABINa"
-account = pd.read_csv(maindir+"\\Notebook_Scripts_Data\\accounts.csv", index_col=0).T
-if username in account.columns:
-    account=account[username].to_dict()
-    print(account)
-else:
-    print(account)
+
+capture_bool = False
+
+def g():
+    global capture_bool
+    capture_bool = True
+
+print(capture_bool)
+g()
+print(capture_bool)
+capture_bool = False
+print(capture_bool)

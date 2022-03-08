@@ -1,7 +1,6 @@
 from retinaface import RetinaFace
-from flask import Flask, request, render_template, session, redirect, url_for, Response
+from flask import Flask, request, render_template, session, redirect, url_for, Response,flash
 import hashlib
-import mysql.connector
 import os
 from werkzeug.utils import secure_filename
 import cv2
@@ -198,6 +197,38 @@ def update_attendance(data):
         f.write(json.dumps(attendance_data))
     return
 
+capture_bool = False
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def attendance_processor(filename_full):
+    message = "Image accepted"
+    info = face_detection(filename_full)
+    result = get_face_encodings(len(info))
+    present = []
+    data = pd.read_csv(maindir+"\\Notebook_Scripts_Data\\crnAndName.csv")
+    for i in data['CRN']:
+        count = 0
+        for j in result:
+            if i in j:
+                present.append('Present')
+                count = 1
+                break
+            else:
+                continue
+        if count == 0:
+            present.append("Absent")
+    data["Status"] = present
+    data_list = data.values.tolist()
+    title = (data.columns.values.tolist())
+    total = len(present)
+    present_no = len(result)-result.count('Unknown')
+    absent_no = total - present_no
+    print("updating attendance.....")
+    update_attendance(data_list)
+    context = {'message': message, 'image_info': info,'img_time': str(int(time.time()))}
+    return context,info,data_list,title,result,total,present_no,absent_no
 
 @app.route('/TakeAttendance', methods=['GET', 'POST'])
 def TakeAttendance():
@@ -205,44 +236,18 @@ def TakeAttendance():
         if session['access']!='S':
             if request.method == 'POST':
                 file = request.files['file']
-                if 'file' not in request.files:
-                    message = "Please Select a Image first"
-                elif file.filename == '':
-                    message = "Please Select a Image first"
-                else:
-                    message = "Image accepted"
+                if capture_bool:
+                    print("Capture File have been accepted.....")
+                    context,info,data_list,title,result,total,present_no,absent_no=attendance_processor(cap_path)
+                    return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no,login=session['username'])
+                elif file and allowed_file(file.filename):
                     filename = secure_filename("image_"+str(int(time.time()))+".jpg")
-                    file.save(os.path.join(
-                        basedir, app.config['UPLOAD_FOLDER'], filename))
+                    file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
                     filename_full = basedir + "\\uploads\\" + filename
                     print("File have been accepted.....")
-                    info = face_detection(filename_full)
-                    result = get_face_encodings(len(info))
-                    present = []
-                    data = pd.read_csv(
-                        maindir+"\\Notebook_Scripts_Data\\crnAndName.csv")
-                    for i in data['CRN']:
-                        count = 0
-                        for j in result:
-                            if i in j:
-                                present.append('Present')
-                                count = 1
-                                break
-                            else:
-                                continue
-                        if count == 0:
-                            present.append("Absent")
-                    data["Status"] = present
-                    data_list = data.values.tolist()
-                    title = (data.columns.values.tolist())
-                    total = len(present)
-                    present_no = len(result)-result.count('Unknown')
-                    absent_no = total - present_no
-                    print("updating attendance.....")
-                    update_attendance(data_list)
-                context = {'message': message, 'image_info': info,
-                       'img_time': str(int(time.time()))}
-                return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no,login=session['username'])
+                    context,info,data_list,title,result,total,present_no,absent_no=attendance_processor(filename_full)
+                    return render_template('TakeAttendance.html', context=context, len=len(info), tables=data_list, title=title, result=result, total=total, present=present_no, absent=absent_no,login=session['username'])
+                return redirect(url_for('TakeAttendance'))
             else:
                 return render_template('TakeAttendance.html', context={}, len=0,login=session['username'])
     return redirect(url_for('Index'))
@@ -256,10 +261,13 @@ def CameraAttendance():
     global capture
     if 'loggedin' in session:
         if session['access']!='S':
+            global capture_bool
+            capture_bool = False
             if request.method == 'POST':
-                if request.form.get("capture") == 'Capture':
-                    global capture
-                    capture = 1
+                global capture
+                capture = 1
+                print("IN capture")
+                return redirect(url_for('TakeAttendance'))
             return render_template('CameraAttendance.html')
     return redirect(url_for('Index'))
 
@@ -267,17 +275,9 @@ def live_video():
     global capture
     cascPath = "./haarcascade_frontalface_default.xml"
     faceCascade = cv2.CascadeClassifier(cascPath)
-
-    camera = cv2.VideoCapture(0)
-
+    camera = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     while True:
-
         success, frame = camera.read()  # read the camera frame
-        try:
-            os.mkdir('./capture')
-        except OSError as error:
-            pass
-
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = faceCascade.detectMultiScale(
             gray,
@@ -285,20 +285,19 @@ def live_video():
             minNeighbors=5,
             minSize=(30, 30)
         )
-
         # Draw a rectangle around the faces
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-
         if not success:
             break
         else:
             if(capture):
                 capture = 0
-                now = datetime.datetime.now()
-                p = os.path.sep.join(
-                    ['capture', "capture_{}.png".format(str(now).replace(":", ''))])
-                cv2.imwrite(p, frame)
+                global cap_path
+                cap_path=basedir+"\\capture\\"+"capture_"+str(int(time.time()))+".jpg"
+                cv2.imwrite(cap_path, frame)
+                global capture_bool
+                capture_bool = True                
             try:
                 ret, buffer = cv2.imencode('.jpg', frame)
                 frame = buffer.tobytes()
