@@ -98,20 +98,20 @@ def get_face_encodings(images):
     return result_final
 
 
-# database connection details below
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="",
-    database="attendance"
-)
+# # database connection details below
+# mydb = mysql.connector.connect(
+#     host="localhost",
+#     user="root",
+#     passwd="",
+#     database="attendance"
+# )
 
 # host address and port
 host_add = '0.0.0.0'
 port_add = 5000
 
-# making cursor
-cursor = mydb.cursor(dictionary=True)
+# # making cursor
+# cursor = mydb.cursor(dictionary=True)
 
 
 
@@ -126,15 +126,14 @@ def Index():
         password = request.form['password']
         username=username.upper()
         password = hashlib.sha256(password.encode()).hexdigest()
-        cursor.execute(
-            'SELECT * FROM accounts WHERE username = %s AND password = %s', (username, password,))
-        account = cursor.fetchone()
-        if account:
+        account = pd.read_csv(maindir+"\\Notebook_Scripts_Data\\accounts.csv", index_col=0).T
+        if username in account.columns:
+            # fetch data
+            account=account[username].to_dict()
             # Create session data, we can access this data in other routes
             # session.permanent = True
             session['loggedin'] = True
-            session['id'] = account['id']
-            session['username'] = account['username']
+            session['username'] = username
             session['access']=account['access']
             # Redirect to profile page
             return redirect(url_for('Profile'))
