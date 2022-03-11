@@ -326,7 +326,7 @@ def AttendanceDetails():
             global subject_selected_detail
             subject_selected_detail = request.form["subject"]
             show=True
-            return render_template('AttendanceDetails.html',attendance_data=attendance_data, s_access = session['access'], username = session['username'] , user_data = user_data ,subject_selected=subject_selected_detail,show=show)
+            return render_template('AttendanceDetails.html',attendance_data=attendance_data, s_access = session['access'], username = session['username'] , user_data = user_data ,subject_selected=subject_selected_detail,show=show,round=round)
         else:
             return render_template('AttendanceDetails.html',attendance_data=attendance_data, s_access = session['access'], username = session['username'] , user_data = user_data,show=show)
     return redirect(url_for('Index'))

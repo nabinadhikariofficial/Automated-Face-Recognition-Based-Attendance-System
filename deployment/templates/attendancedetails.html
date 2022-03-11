@@ -55,7 +55,9 @@
                         <hr>
                         <div class="percent">
                             <h6>Present Percentage:</h6>
-                            <h2>&ensp;{{(attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])*100}}%
+                            <h2>&ensp;{{
+                                ((attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['Present']/attendance_data['student'][username][attendance_data['teacher'][i]['subject'][0]]['total'])*100)|round(2,
+                                'ceil') }}%
                             </h2>
                         </div>
                         <div class="card-subtitle">
